@@ -9,9 +9,6 @@ import android.view.ViewGroup
 
 import de.adesso_mobile.coroutinesadvanced.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class DummyFragment : Fragment() {
 
     override fun onCreateView(
@@ -22,5 +19,8 @@ class DummyFragment : Fragment() {
         return inflater.inflate(R.layout.dummy_fragment, container, false)
     }
 
+    companion object{
+        fun newInstance() = DummyFragment()
+    }
 
 }
