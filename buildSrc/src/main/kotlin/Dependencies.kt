@@ -21,4 +21,7 @@ object Dependencies{
     val material = "com.google.android.material:material:${Versions.material}"
 
     val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
+
+    val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment_version}"
+    val fragment_testing = "androidx.fragment:fragment-testing:${Versions.fragment_version}"
 }

@@ -39,6 +39,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.1.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation(Dependencies.fragment)
 
     // Architecture Components
     implementation(Dependencies.lifecycle_extensions)
@@ -67,6 +68,7 @@ dependencies {
 
     // Test
     testImplementation(Dependencies.mockito_kotlin)
+    implementation(Dependencies.fragment_testing)
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test:runner:1.2.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")

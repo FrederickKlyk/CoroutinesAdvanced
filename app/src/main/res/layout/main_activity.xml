@@ -32,7 +32,7 @@
                     android:elevation="4dp"
                     android:fitsSystemWindows="true" />
 
-                <FrameLayout
+                <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/main_container_FL"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

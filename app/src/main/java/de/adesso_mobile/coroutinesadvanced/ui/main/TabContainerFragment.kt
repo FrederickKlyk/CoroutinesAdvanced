@@ -33,7 +33,8 @@ class TabContainerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragmentManager?.let { tabAdapter = MainViewPagerAdapter(it, lifecycle) }
+
+        tabAdapter = MainViewPagerAdapter(childFragmentManager, lifecycle)
         addFragmentsToViewPager()
         initTabLayout()
     }
