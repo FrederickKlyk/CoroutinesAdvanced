@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
         sideNavView?.setupWithNavController(navController)
         val drawerLayout: DrawerLayout? = findViewById(R.id.drawerMain_DL)
 
-        //fragments load from here but how ?
+        //it means that they will remain on the backstack after navigating to one another. That’s called placing as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.tabContainerFragment, R.id.menu_overviewLibs),
             drawerLayout
