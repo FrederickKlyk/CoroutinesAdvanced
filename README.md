@@ -12,3 +12,5 @@ Coroutines - Channles - Flow
 Tablayout - viewpager2, materials
 
 Kotlin DSL Gradle
+
+Koin
