@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("androidx.navigation.safeargs")
     kotlin("android")
     kotlin("android.extensions")
 }
@@ -17,7 +18,7 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled  = false
+            isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -30,6 +31,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "1.8" }
 }
 
 dependencies {
@@ -47,6 +51,10 @@ dependencies {
     implementation(Dependencies.lifecycle_compiler)
     testImplementation(Dependencies.lifecycle_testing)
 
+    // Navigation
+    implementation(Dependencies.navigation_fragment)
+    implementation(Dependencies.navigation_ui)
+
     // Logging
     implementation(Dependencies.timber)
 
@@ -60,10 +68,10 @@ dependencies {
     implementation(Dependencies.coroutines_android)
     testImplementation(Dependencies.coroutines_test)
 
-    //Viewpager2
+    // Viewpager2
     implementation(Dependencies.viewpager2)
 
-    //material
+    // material
     implementation(Dependencies.material)
 
     // Test

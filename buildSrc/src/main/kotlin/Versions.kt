@@ -10,4 +10,5 @@ object Versions {
     val material  = "1.2.0-alpha01"
     val mockito_kotlin  = "2.1.0"
     val fragment_version = "1.2.0-rc01"
+    val nav_version = "2.1.0"
 }

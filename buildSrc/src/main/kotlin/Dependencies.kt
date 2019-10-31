@@ -24,4 +24,8 @@ object Dependencies{
 
     val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment_version}"
     val fragment_testing = "androidx.fragment:fragment-testing:${Versions.fragment_version}"
+
+    val navigation_fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+    val navigation_safe_args =  "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}"
 }

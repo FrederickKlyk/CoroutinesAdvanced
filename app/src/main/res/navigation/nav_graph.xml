@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tabContainerFragment">
+
+
+    <fragment
+        android:id="@+id/tabContainerFragment"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.TabContainerFragment"
+        android:label="TabContainerFragment"
+        tools:layout="@layout/tab_container_fragment">
+        <action
+            android:id="@+id/tabContainerFragment_to_overviewLibsFragment"
+            app:destination="@id/menu_overviewLibs" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu_overviewLibs"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragment"
+        android:label="OverviewLibsFragment"
+        tools:layout="@layout/overview_libs_fragment" >
+        <action
+            android:id="@+id/overviewLibsFragment_to_dummyFragment"
+            app:destination="@id/dummyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dummyFragment"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment"
+        android:label="dummy_fragment"
+        tools:layout="@layout/dummy_fragment" />
+</navigation>

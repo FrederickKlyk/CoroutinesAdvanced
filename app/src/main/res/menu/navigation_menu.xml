@@ -3,7 +3,7 @@
     <item android:id="@+id/menu_coroutines"
         android:icon="@android:mipmap/sym_def_app_icon"
         android:title="Coroutines"/>
-    <item android:id="@+id/menu_others"
+    <item android:id="@+id/menu_overviewLibs"
         android:icon="@android:mipmap/sym_def_app_icon"
-        android:title="Others"/>
+        android:title="Übersicht der verwendeten Libs"/>
 </menu>
