@@ -31,7 +31,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
+    packagingOptions {
+        pickFirst("META-INF/kotlinx-coroutines-core.kotlin_module")
+    }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "1.8" }
 }
@@ -67,6 +69,8 @@ dependencies {
     implementation(Dependencies.coroutines_core)
     implementation(Dependencies.coroutines_android)
     testImplementation(Dependencies.coroutines_test)
+    implementation("io.ktor:ktor-client-android:1.3.0-beta-1")
+
 
     // Viewpager2
     implementation(Dependencies.viewpager2)
