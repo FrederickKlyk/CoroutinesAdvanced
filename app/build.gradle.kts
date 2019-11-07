@@ -69,8 +69,9 @@ dependencies {
     implementation(Dependencies.coroutines_core)
     implementation(Dependencies.coroutines_android)
     testImplementation(Dependencies.coroutines_test)
-    implementation("io.ktor:ktor-client-android:1.3.0-beta-1")
 
+    // Ktor
+    implementation(Dependencies.ktor_client_android)
 
     // Viewpager2
     implementation(Dependencies.viewpager2)

@@ -1,31 +1,43 @@
 object Dependencies{
-    val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
-    val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    // System libs
+    const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
+    const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 
-    val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    // Timber
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
-    val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-    val lifecycle_compiler = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
-    val viewmodel_scope =    "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    val lifecycle_testing = "androidx.arch.core:core-testing:${Versions.lifecycle_test}"
+    // Android Lifecycle (architecture components)
+    const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycle_compiler = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
+    const val viewmodel_scope =    "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycle_testing = "androidx.arch.core:core-testing:${Versions.lifecycle_test}"
 
-    val koin_core = "org.koin:koin-core:${Versions.koin}"
-    val koin_android = "org.koin:koin-android:${Versions.koin}"
-    val koin_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+    // Koin DI
+    const val koin_core = "org.koin:koin-core:${Versions.koin}"
+    const val koin_android = "org.koin:koin-android:${Versions.koin}"
+    const val koin_viewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 
-    val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
-    val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+    // Coroutines
+    const val coroutines_core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
 
-    val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewpager2}"
-    val material = "com.google.android.material:material:${Versions.material}"
+    // Viewpager + Material
+    const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewpager2}"
+    const val material = "com.google.android.material:material:${Versions.material}"
 
-    val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
+    // JUnit
+    const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
 
-    val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment_version}"
-    val fragment_testing = "androidx.fragment:fragment-testing:${Versions.fragment_version}"
+    //Fragment
+    const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment_version}"
+    const val fragment_testing = "androidx.fragment:fragment-testing:${Versions.fragment_version}"
 
-    val navigation_fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
-    val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
-    val navigation_safe_args =  "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}"
+    // Navigation
+    const val navigation_fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
+    const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
+    const val navigation_safe_args =  "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}"
+
+    // Ktor
+    const val ktor_client_android = "io.ktor:ktor-client-android:${Versions.ktor_client_android}"
 }
