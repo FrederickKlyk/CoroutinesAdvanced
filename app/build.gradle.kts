@@ -72,6 +72,7 @@ dependencies {
 
     // Ktor
     implementation(Dependencies.ktor_client_android)
+    implementation(Dependencies.ktor_client_gson)
 
     // Viewpager2
     implementation(Dependencies.viewpager2)

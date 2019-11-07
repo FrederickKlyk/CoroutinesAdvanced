@@ -9,16 +9,16 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 class CoroutinesFragmentViewModel : BaseViewModel() {
+    val weatherApi = WeatherService()
 
     fun initialize() = viewModelScope.launch {
-        val weatherApi = WeatherService()
 
         Timber.d("HTTP:")
         try {
             val result = withContext(Dispatchers.IO) { weatherApi.fetchWeather() }
-            Timber.d(result)
+            Timber.d(result.toString())
         } catch (e: Exception) {
-            Timber.e(e.message)
+            Timber.e(e)
         }
     }
 
