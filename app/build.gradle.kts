@@ -33,6 +33,9 @@ android {
     }
     packagingOptions {
         pickFirst("META-INF/kotlinx-coroutines-core.kotlin_module")
+        pickFirst("META-INF/ktor-http.kotlin_module")
+        pickFirst("META-INF/ktor-utils.kotlin_module")
+        pickFirst("META-INF/ktor-io.kotlin_module")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "1.8" }
@@ -73,6 +76,9 @@ dependencies {
     // Ktor
     implementation(Dependencies.ktor_client_android)
     implementation(Dependencies.ktor_client_gson)
+    implementation(Dependencies.ktor_client_okHttp)
+    implementation(Dependencies.ktor_client_logging_jvm)
+    implementation("com.squareup.okhttp3:logging-interceptor:4.2.1")
 
     // Viewpager2
     implementation(Dependencies.viewpager2)
