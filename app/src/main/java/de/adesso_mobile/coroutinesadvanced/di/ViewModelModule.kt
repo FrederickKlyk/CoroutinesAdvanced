@@ -10,6 +10,6 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { MainActivityViewModel() }
     viewModel { TabContainerViewModel() }
-    viewModel { CoroutinesFragmentViewModel() }
+    viewModel { CoroutinesFragmentViewModel(weatherApi = get()) }
     viewModel { OverviewLibsFragmentViewModel() }
 }
