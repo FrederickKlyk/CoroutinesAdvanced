@@ -78,7 +78,7 @@ dependencies {
     implementation(Dependencies.ktor_client_gson)
     implementation(Dependencies.ktor_client_okHttp)
     implementation(Dependencies.ktor_client_logging_jvm)
-    implementation("com.squareup.okhttp3:logging-interceptor:4.2.1")
+    implementation(Dependencies.okHttp_logging)
 
     // Viewpager2
     implementation(Dependencies.viewpager2)

@@ -44,4 +44,7 @@ object Dependencies{
     const val ktor_client_okHttp = "io.ktor:ktor-client-okhttp:${Versions.ktor_client_android}"
     const val ktor_client_logging = "io.ktor:ktor-client-logging:${Versions.ktor_client_android}"
     const val ktor_client_logging_jvm = "io.ktor:ktor-client-logging-jvm:${Versions.ktor_client_android}"
+
+    // OkHttp Logging
+    const val okHttp_logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp_logging}"
 }
