@@ -25,5 +25,51 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/wetter_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/lade_wetterdaten_button"
+            android:onClick="@{() -> viewModel.initialize()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/first_TV" />
+
+        <TextView
+            android:id="@+id/wetter_Daten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.wetterDatenText}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wetter_Button"/>
+
+        <EditText
+            android:layout_marginTop="32dp"
+            android:hint="Post Data Value"
+            android:id="@+id/postData_ET"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wetter_Daten"
+            android:text="@={viewModel.postDataText}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/postData_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/post_button"
+            android:onClick="@{() -> viewModel.sendHTTPPost()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postData_ET" />
+
+        <TextView
+            android:id="@+id/postData_Daten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.postDataResponseText}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postData_Button"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

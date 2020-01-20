@@ -25,12 +25,6 @@ class CoroutinesFragment : Fragment() {
         }.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        viewModel.initialize()
-    }
-
     companion object{
 
         fun newInstance() = CoroutinesFragment()

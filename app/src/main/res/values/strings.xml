@@ -2,5 +2,7 @@
     <string name="app_name">CoroutinesAdvanced</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="tab_coroutines_description">Auf dieser Seite werden Coroutines vorgestellt</string>
+    <string name="tab_coroutines_description">Auf dieser Seite werden Coroutines in Verbindung mit Ktor vorgestellt.</string>
+    <string name="lade_wetterdaten_button">Lade Wetterdaten</string>
+    <string name="post_button">Sende ein POST Befehl ab</string>
 </resources>

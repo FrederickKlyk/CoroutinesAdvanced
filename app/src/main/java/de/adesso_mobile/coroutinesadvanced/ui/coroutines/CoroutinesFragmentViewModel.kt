@@ -1,30 +1,54 @@
 package de.adesso_mobile.coroutinesadvanced.ui.coroutines
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseViewModel
+import de.adesso_mobile.coroutinesadvanced.utils.MutableLiveDataNotNull
 import io.ktor.client.call.receive
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class CoroutinesFragmentViewModel(private val weatherApi: WeatherService) : BaseViewModel() {
+class CoroutinesFragmentViewModel(
+    private val weatherApi: WeatherService,
+    private val lokalServerService: LokalServerService
+) : BaseViewModel() {
 
+    val wetterDatenText = MutableLiveData<String>("")
+    val postDataText = MutableLiveData("")
+    val postDataResponseText = MutableLiveData("")
 
     fun initialize() = viewModelScope.launch {
         Timber.d("HTTP:")
-        try {
-            withContext(Dispatchers.IO) { weatherApi.fetchWeather() }.apply {
-                if (status.value == 200) {
-                    Timber.d(status.description)
-                    Timber.d(status.value.toString())
-                }
+        withContext(Dispatchers.IO) { weatherApi.fetchWeather() }.apply {
+            if (status.value == 200) {
+                Timber.d("${status.value}: ${status.description}")
+
                 val weather = receive<WeatherService.Weather>()
                 Timber.d(weather.toString())
                 val p1 = weather.copy(base = "test")
                 Timber.d(p1.toString())
+
+                wetterDatenText.value = "Basis: ${weather.base} \n${weather.coord}\nTemperatur: ${String.format(
+                    "%.2f",
+                    weather.main.temp - 273.15
+                )}°c \nWindstufe: ${weather.wind.speed}"
+            } else {
+                wetterDatenText.value = "Fehler beim Laden mit Statuscode ${status.value}"
             }
-        } catch (e: Exception) {
-            Timber.e(e)
+        }
+    }
+
+    fun sendHTTPPost() = viewModelScope.launch {
+        withContext(Dispatchers.IO) { lokalServerService.sendTestPost(postDataText.value?: "") }.apply {
+            if (status.value == 200) {
+                postDataResponseText.value = receive<LokalServerService.lokalServerResponse>().response
+            } else {
+                postDataResponseText.value = "Fehler beim Laden mit Statuscode ${status.value}"
+            }
         }
     }
 }
