@@ -2,25 +2,39 @@ package de.adesso_mobile.coroutinesadvanced.ui.viewpager2
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
+import de.adesso_mobile.coroutinesadvanced.databinding.Viewpager2FragmentBinding
+import kotlinx.android.synthetic.main.viewpager2_fragment.*
+import org.koin.android.ext.android.inject
 
-import de.adesso_mobile.coroutinesadvanced.R
-
-/**
- * A simple [Fragment] subclass.
- */
 class Viewpager2Fragment : Fragment() {
+
+    val viewModel: Viewpager2FragmentViewModel by inject()
+    private val adapter: CategoryAdapter by lazy { CategoryAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_viewpager2, container, false)
+        return Viewpager2FragmentBinding.inflate(inflater).apply {
+            lifecycleOwner = this@Viewpager2Fragment
+            viewModel = viewModel
+        }.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        setupViewPager()
+    }
+
+    private fun setupViewPager() {
+        viewPager2.adapter = adapter
+        viewPager2.orientation = ViewPager2.ORIENTATION_VERTICAL
+        adapter.setItem(viewModel.categories.value)
+    }
 }

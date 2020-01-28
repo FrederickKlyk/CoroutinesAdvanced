@@ -2,10 +2,16 @@
 
 <!-- Just place the same id that you added in the nav_graph , and it will work fine. -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_coroutines"
+    <item
+        android:id="@+id/menu_coroutines"
         android:icon="@android:mipmap/sym_def_app_icon"
-        android:title="Coroutines"/>
-    <item android:id="@+id/menu_overviewLibs"
+        android:title="@string/menu_coroutines_title" />
+    <item
+        android:id="@+id/menu_overviewLibs"
         android:icon="@android:mipmap/sym_def_app_icon"
-        android:title="Übersicht der verwendeten Libs"/>
+        android:title="@string/menu_uebersicht_der_verwendeten_libs_title" />
+    <item
+        android:id="@+id/menu_viewpager2"
+        android:icon="@android:mipmap/sym_def_app_icon"
+        android:title="@string/menu_viewpager2_demo_title" />
 </menu>

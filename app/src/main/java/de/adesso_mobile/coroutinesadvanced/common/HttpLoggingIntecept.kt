@@ -10,7 +10,6 @@ class HttpLoggingIntecept : Interceptor {
 
     init {
         logging.apply { logging.level = HttpLoggingInterceptor.Level.BASIC }
-
     }
 
     override fun intercept(chain: Interceptor.Chain): Response = when {

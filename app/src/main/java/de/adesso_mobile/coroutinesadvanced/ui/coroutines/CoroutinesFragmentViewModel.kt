@@ -5,12 +5,13 @@ import androidx.lifecycle.viewModelScope
 import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseViewModel
-import de.adesso_mobile.coroutinesadvanced.utils.MutableLiveDataNotNull
 import io.ktor.client.call.receive
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.io.IOException
+import java.net.SocketTimeoutException
 
 class CoroutinesFragmentViewModel(
     private val weatherApi: WeatherService,
@@ -43,11 +44,23 @@ class CoroutinesFragmentViewModel(
     }
 
     fun sendHTTPPost() = viewModelScope.launch {
-        withContext(Dispatchers.IO) { lokalServerService.sendTestPost(postDataText.value?: "") }.apply {
-            if (status.value == 200) {
-                postDataResponseText.value = receive<LokalServerService.lokalServerResponse>().response
-            } else {
-                postDataResponseText.value = "Fehler beim Laden mit Statuscode ${status.value}"
+        withContext(Dispatchers.IO) {
+            try {
+                lokalServerService.sendTestPost(postDataText.value ?: "")
+                    .apply {
+                        if (status.value == 200) {
+                            postDataResponseText.value = receive<LokalServerService.lokalServerResponse>().response
+                        } else {
+                            postDataResponseText.value = "Fehler beim Laden mit Statuscode ${status.value}"
+                        }
+                    }
+                //catch exceptions from specific to general
+            } catch (e: SocketTimeoutException) {
+                Timber.e("sendHTTPPost(), SocketTimeoutException: $e")
+            } catch (e: IOException) {
+                Timber.e("sendHTTPPost(), IOException: $e")
+            } catch (e: Exception) {
+                Timber.e("sendHTTPPost(), Exception: $e")
             }
         }
     }

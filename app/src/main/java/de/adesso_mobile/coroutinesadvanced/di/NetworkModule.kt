@@ -14,6 +14,7 @@ import io.ktor.client.features.logging.Logging
 import io.ktor.client.features.logging.SIMPLE
 import io.ktor.client.request.header
 import org.koin.dsl.module
+import timber.log.Timber
 
 
 fun networkModule(baseUrl: String) = module {
@@ -43,13 +44,13 @@ fun networkModule(baseUrl: String) = module {
                 validateResponse { response ->
                     val statusCode = response.status.value
                     when (statusCode) {
-                        in 300..399 -> throw RedirectResponseException(response)
-                        in 400..499 -> throw ClientRequestException(response)
-                        in 500..599 -> throw ServerResponseException(response)
+                        in 300..399 -> Timber.e(RedirectResponseException(response))
+                        in 400..499 -> Timber.e(ClientRequestException(response))
+                        in 500..599 -> Timber.e(ServerResponseException(response))
                     }
 
                     if (statusCode >= 600) {
-                        throw ResponseException(response)
+                        Timber.e(ResponseException(response))
                     }
                 }
             }

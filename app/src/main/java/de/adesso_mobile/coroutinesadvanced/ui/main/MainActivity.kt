@@ -2,10 +2,8 @@ package de.adesso_mobile.coroutinesadvanced.ui.main
 
 import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -15,7 +13,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import de.adesso_mobile.coroutinesadvanced.R
@@ -24,7 +21,7 @@ import kotlinx.android.synthetic.main.main_activity.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListener  {
+class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListener {
 
     val viewModel: MainActivityViewModel by inject()
     private lateinit var navController: NavController
@@ -53,7 +50,7 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
                 destination.id.toString()
             }
             Toast.makeText(this@MainActivity, "Navigated to $dest", Toast.LENGTH_SHORT).show()
-            Timber.d("NavigationActivity", "Navigated to $dest")
+            Timber.d("NavigationActivity: Navigated to $dest")
         }
     }
 

@@ -8,8 +8,7 @@ import io.ktor.http.ContentType
 
 
 class LokalServerService(val client: HttpClient) {
-
-
+    
     suspend fun sendTestPost(value: String) = client.post<HttpStatement>(urlString = "http://10.0.2.2:8080/test") {
         body = TextContent(value, ContentType.Text.Plain)
     }.execute()

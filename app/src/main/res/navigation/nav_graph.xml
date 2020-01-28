@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/tabContainerFragment">
-
-
     <fragment
         android:id="@+id/tabContainerFragment"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.main.TabContainerFragment"
@@ -14,12 +12,16 @@
         <action
             android:id="@+id/tabContainerFragment_to_overviewLibsFragment"
             app:destination="@id/menu_overviewLibs" />
+        <action
+            android:id="@+id/action_tabContainerFragment_to_viewpager2Fragment2"
+            app:destination="@id/menu_viewpager2" />
+
     </fragment>
     <fragment
         android:id="@+id/menu_overviewLibs"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragment"
         android:label="OverviewLibsFragment"
-        tools:layout="@layout/overview_libs_fragment" >
+        tools:layout="@layout/overview_libs_fragment">
         <action
             android:id="@+id/overviewLibsFragment_to_dummyFragment"
             app:destination="@id/dummyFragment" />
@@ -29,4 +31,10 @@
         android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment"
         android:label="dummy_fragment"
         tools:layout="@layout/dummy_fragment" />
+    <fragment
+        android:id="@+id/menu_viewpager2"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2Fragment"
+        android:label="Viewpager2Fragment"
+        tools:layout="@layout/viewpager2_fragment" />
+
 </navigation>

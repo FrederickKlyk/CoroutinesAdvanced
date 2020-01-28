@@ -16,19 +16,6 @@ import io.ktor.http.headersOf
 
 class WeatherService(val client: HttpClient, val baseUrl: String) {
 
-    val data: List<PartData> = formData {
-        // Can append: String, Number, ByteArray and Input.
-        append("hello", "world")
-        append("number", 10)
-        append("ba", byteArrayOf(1, 2, 3, 4))
-        // Allow to set headers to the part:
-        append("hello", "world", headersOf("key", "value"))
-    }
-
-    suspend fun sendTestPost() = client.post<HttpStatement>(urlString = "http://127.0.0.1:8080/test"){
-        parameter("test", "lol")
-    }
-
     suspend fun fetchWeather() = client.get<HttpStatement>("$baseUrl/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22").execute()
 
     data class Weather(val coord: Coordinate, val base: String, val main: Main, val wind:Wind)
