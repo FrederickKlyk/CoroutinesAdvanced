@@ -13,8 +13,11 @@
             android:id="@+id/tabContainerFragment_to_overviewLibsFragment"
             app:destination="@id/menu_overviewLibs" />
         <action
-            android:id="@+id/action_tabContainerFragment_to_viewpager2Fragment2"
-            app:destination="@id/menu_viewpager2" />
+            android:id="@+id/action_tabContainerFragment_to_viewpager2HorizontalFragment"
+            app:destination="@id/menu_viewpager2_horizontal" />
+        <action
+            android:id="@+id/action_tabContainerFragment_to_viewpager2VerticalFragment"
+            app:destination="@id/menu_viewpager2_vertical" />
 
     </fragment>
     <fragment
@@ -32,9 +35,13 @@
         android:label="dummy_fragment"
         tools:layout="@layout/dummy_fragment" />
     <fragment
-        android:id="@+id/menu_viewpager2"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2Fragment"
-        android:label="Viewpager2Fragment"
+        android:id="@+id/menu_viewpager2_horizontal"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2HorizontalFragment"
+        android:label="Viewpager2HorizontalFragment"
         tools:layout="@layout/viewpager2_fragment" />
-
+    <fragment
+        android:id="@+id/menu_viewpager2_vertical"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2VerticalFragment"
+        android:label="Viewpager2VerticalFragment"
+        tools:layout="@layout/viewpager2_fragment" />
 </navigation>

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2FragmentViewModel" />
+            type="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2SharedViewModel" />
     </data>
 
     <androidx.viewpager2.widget.ViewPager2

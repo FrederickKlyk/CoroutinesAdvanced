@@ -7,5 +7,6 @@
     <string name="post_button">Sende ein POST Befehl ab</string>
     <string name="menu_coroutines_title">Coroutines</string>
     <string name="menu_uebersicht_der_verwendeten_libs_title">Übersicht der verwendeten Libs</string>
-    <string name="menu_viewpager2_demo_title">Viewpager2 Demo</string>
+    <string name="viewpager2_horizontal">ViewPager2 Horizontal</string>
+    <string name="viewpager2_vertical">ViewPager2 Vertical</string>
 </resources>

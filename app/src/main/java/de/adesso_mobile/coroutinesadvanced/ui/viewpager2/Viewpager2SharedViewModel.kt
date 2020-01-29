@@ -3,7 +3,7 @@ package de.adesso_mobile.coroutinesadvanced.ui.viewpager2
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseViewModel
 import de.adesso_mobile.coroutinesadvanced.utils.MutableLiveDataNotNull
 
-class Viewpager2FragmentViewModel : BaseViewModel() {
+class Viewpager2SharedViewModel : BaseViewModel() {
 
     val categories = MutableLiveDataNotNull(
         listOf(

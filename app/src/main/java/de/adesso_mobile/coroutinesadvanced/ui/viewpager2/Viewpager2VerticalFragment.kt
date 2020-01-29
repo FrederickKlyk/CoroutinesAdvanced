@@ -11,9 +11,9 @@ import de.adesso_mobile.coroutinesadvanced.databinding.Viewpager2FragmentBinding
 import kotlinx.android.synthetic.main.viewpager2_fragment.*
 import org.koin.android.ext.android.inject
 
-class Viewpager2Fragment : Fragment() {
+class Viewpager2VerticalFragment : Fragment() {
 
-    val viewModel: Viewpager2FragmentViewModel by inject()
+    val viewModel: Viewpager2SharedViewModel by inject()
     private val adapter: CategoryAdapter by lazy { CategoryAdapter() }
 
     override fun onCreateView(
@@ -21,7 +21,7 @@ class Viewpager2Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return Viewpager2FragmentBinding.inflate(inflater).apply {
-            lifecycleOwner = this@Viewpager2Fragment
+            lifecycleOwner = this@Viewpager2VerticalFragment
             viewModel = viewModel
         }.root
     }
