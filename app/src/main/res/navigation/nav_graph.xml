@@ -6,7 +6,7 @@
     app:startDestination="@id/tabContainerFragment">
     <fragment
         android:id="@+id/tabContainerFragment"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.TabContainerFragment"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerFragment"
         android:label="TabContainerFragment"
         tools:layout="@layout/tab_container_fragment">
         <action
@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_tabContainerFragment_to_viewpager2VerticalFragment"
             app:destination="@id/menu_viewpager2_vertical" />
+        <action
+            android:id="@+id/action_tabContainerFragment_to_viewpager2Tabs"
+            app:destination="@id/menu_viewpager2_tabs" />
 
     </fragment>
     <fragment
@@ -44,4 +47,9 @@
         android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2VerticalFragment"
         android:label="Viewpager2VerticalFragment"
         tools:layout="@layout/viewpager2_fragment" />
+    <fragment
+        android:id="@+id/menu_viewpager2_tabs"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsDotsFragment"
+        tools:layout="@layout/tab_container_fragment"
+        android:label="Viewpager2Tabs" />
 </navigation>

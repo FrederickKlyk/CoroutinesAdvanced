@@ -22,6 +22,10 @@
                 android:id="@+id/menu_viewpager2_vertical"
                 android:icon="@android:mipmap/sym_def_app_icon"
                 android:title="@string/viewpager2_vertical" />
+            <item
+                android:id="@+id/menu_viewpager2_tabs"
+                android:icon="@android:mipmap/sym_def_app_icon"
+                android:title="@string/viewpager2_tabs" />
         </menu>
     </item>
 </menu>

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.main.TabContainerViewModel" />
+            type="de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,12 +28,14 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/mainViewPager"
+            android:id="@+id/viewPagerForTabs"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_ABL" />
+            app:layout_constraintTop_toBottomOf="@id/main_ABL" >
+
+        </androidx.viewpager2.widget.ViewPager2>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

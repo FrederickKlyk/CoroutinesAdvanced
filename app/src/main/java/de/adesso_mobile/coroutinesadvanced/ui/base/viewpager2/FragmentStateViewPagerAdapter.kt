@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment
 
-class MainViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+class FragmentStateViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     private val fragmentList: ArrayList<Fragment> = ArrayList()

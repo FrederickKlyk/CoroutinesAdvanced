@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.adesso_mobile.coroutinesadvanced.R
+import de.adesso_mobile.coroutinesadvanced.domain.viewpager2.Category
 import kotlinx.android.synthetic.main.category_item.view.*
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
@@ -12,7 +13,9 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder = CategoryViewHolder(parent)
 
-    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) = holder.bind(list[position])
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int){
+        holder.bind(list[position])
+    }
 
     fun setItem(list: List<Category>) {
         this.list = list

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerForTabsDots"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tabsDots_TL"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsDots_TL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tabIndicator="@drawable/background_tab_indicator"
+            app:tabBackground="@drawable/background_amber_dot_3dp"
+            app:tabIndicatorColor="@android:color/holo_red_dark"
+            app:tabMaxWidth="12dp"
+            app:tabIndicatorGravity="center"
+            app:tabGravity="center"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
