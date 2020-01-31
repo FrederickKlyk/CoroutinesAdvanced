@@ -7,7 +7,7 @@ plugins {
 
 android {
     compileSdkVersion(29)
-    buildToolsVersion = "29.0.1"
+    buildToolsVersion = "29.0.2"
     defaultConfig {
         applicationId = "de.adesso_mobile.coroutinesadvanced"
         minSdkVersion(23)
@@ -79,6 +79,8 @@ dependencies {
     implementation(Dependencies.ktor_client_okHttp)
     implementation(Dependencies.ktor_client_logging_jvm)
     implementation(Dependencies.okHttp_logging)
+    // Ktor Mock-Engine
+    api(Dependencies.ktor_client_mock_engine_jvm)
 
     // Viewpager2
     implementation(Dependencies.viewpager2)

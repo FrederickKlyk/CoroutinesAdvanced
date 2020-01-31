@@ -6,6 +6,8 @@ import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseViewModel
 import io.ktor.client.call.receive
+import io.ktor.client.statement.response
+import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -38,7 +40,7 @@ class CoroutinesFragmentViewModel(
                     weather.main.temp - 273.15
                 )}°c \nWindstufe: ${weather.wind.speed}"
             } else {
-                wetterDatenText.value = "Fehler beim Laden mit Statuscode ${status.value}"
+                wetterDatenText.value = "Fehler beim Laden mit Statuscode ${status.value}, ${status.description} \n ${this.content.readUTF8Line()}"
             }
         }
     }
@@ -49,7 +51,7 @@ class CoroutinesFragmentViewModel(
                 lokalServerService.sendTestPost(postDataText.value ?: "")
                     .apply {
                         if (status.value == 200) {
-                            postDataResponseText.value = receive<LokalServerService.lokalServerResponse>().response
+                            postDataResponseText.value = receive<LokalServerService.LokalServerResponse>().response
                         } else {
                             postDataResponseText.value = "Fehler beim Laden mit Statuscode ${status.value}"
                         }

@@ -5,12 +5,9 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
 
-class HttpLoggingIntecept : Interceptor {
-    val logging = HttpLoggingInterceptor()
-
-    init {
-        logging.apply { logging.level = HttpLoggingInterceptor.Level.BASIC }
-    }
+class HttpLoggingSensitiveInterceptor(
+    private val httpLoggingInterceptor: HttpLoggingInterceptor
+) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response = when {
         chain.request().url.toString() == "geheim" -> {
@@ -18,7 +15,7 @@ class HttpLoggingIntecept : Interceptor {
         }
         else -> {
             Timber.d("URL ist nicht sensitiv")
-            logging.intercept(chain)
+            httpLoggingInterceptor.intercept(chain)
         }
     }
 }

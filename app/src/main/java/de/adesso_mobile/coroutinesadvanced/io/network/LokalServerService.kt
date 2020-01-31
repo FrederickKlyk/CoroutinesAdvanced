@@ -13,5 +13,5 @@ class LokalServerService(val client: HttpClient) {
         body = TextContent(value, ContentType.Text.Plain)
     }.execute()
 
-    data class lokalServerResponse(val response: String)
+    data class LokalServerResponse(val response: String)
 }
