@@ -3,10 +3,9 @@ package de.adesso_mobile.coroutinesadvanced.di
 import de.adesso_mobile.coroutinesadvanced.common.HttpLoggingSensitiveInterceptor
 import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
-import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
-import io.ktor.client.engine.mock.respondError
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.*
 import io.ktor.client.features.json.GsonSerializer
@@ -86,7 +85,7 @@ fun provideHTTPClient(httpLoggingSensitiveInterceptor: HttpLoggingSensitiveInter
 /**
  * Mock-Engine Ktor Client zum testen von Endpunkten.
  */
-fun provideMockHTTPClient() = HttpClient(MockEngine){
+fun provideMockHTTPClient() = HttpClient(MockEngine) {
     engine {
         addHandler { request ->
             Timber.d("REQUEST WAR: $request")
@@ -95,8 +94,19 @@ fun provideMockHTTPClient() = HttpClient(MockEngine){
                     val responseHeaders = headersOf("Content-Type" to listOf(ContentType.Text.Plain.toString()))
                     respond("Hello, world", headers = responseHeaders)
                 }
-                else -> respondError(status = HttpStatusCode.NotFound, content = "Unhandled ${request.url.fullUrl}")
+                "http://10.0.2.2:8080/test" -> {
+                    respond(content = "{\"response\": \"Ich bin ein Mock\"}", status = HttpStatusCode.OK, headers = Headers.build {
+                        this["Content-Type"] = "application/json"
+                    })
+                }
+                else -> respond(status = HttpStatusCode.NotFound, content = "URL Konnte nicht gefunden werden.")
             }
+        }
+    }
+    //JSON serialization
+    install(JsonFeature) {
+        serializer = GsonSerializer {
+            disableHtmlEscaping()
         }
     }
     //Ktor Logging

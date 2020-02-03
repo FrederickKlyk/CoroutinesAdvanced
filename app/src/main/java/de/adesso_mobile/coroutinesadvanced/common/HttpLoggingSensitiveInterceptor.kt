@@ -9,8 +9,12 @@ class HttpLoggingSensitiveInterceptor(
     private val httpLoggingInterceptor: HttpLoggingInterceptor
 ) : Interceptor {
 
+    private val geheimeURLList = listOf<String>("geheim", "login", "register")
+
     override fun intercept(chain: Interceptor.Chain): Response = when {
-        chain.request().url.toString() == "geheim" -> {
+        //Wenn geheime URL zutreffend, dann nicht loggen
+        geheimeURLList.contains(chain.request().url.toString()) -> {
+            Timber.d("es wird nit über HTTP Logging geloggt.")
             chain.proceed(chain.request())
         }
         else -> {

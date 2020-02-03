@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseViewModel
+import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.call.receive
-import io.ktor.client.statement.response
 import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,24 +46,24 @@ class CoroutinesFragmentViewModel(
     }
 
     fun sendHTTPPost() = viewModelScope.launch {
-        withContext(Dispatchers.IO) {
-            try {
-                lokalServerService.sendTestPost(postDataText.value ?: "")
-                    .apply {
-                        if (status.value == 200) {
-                            postDataResponseText.value = receive<LokalServerService.LokalServerResponse>().response
-                        } else {
-                            postDataResponseText.value = "Fehler beim Laden mit Statuscode ${status.value}"
-                        }
+        try {
+            withContext(Dispatchers.IO) { lokalServerService.sendTestPost(postDataText.value ?: "") }
+                .apply {
+                    if (status.value == 200) {
+                        postDataResponseText.setValue(receive<LokalServerService.LokalServerResponse>().response)
+                    } else {
+                        postDataResponseText.setValue("Fehler beim Laden mit Statuscode ${status.value}")
                     }
-                //catch exceptions from specific to general
-            } catch (e: SocketTimeoutException) {
-                Timber.e("sendHTTPPost(), SocketTimeoutException: $e")
-            } catch (e: IOException) {
-                Timber.e("sendHTTPPost(), IOException: $e")
-            } catch (e: Exception) {
-                Timber.e("sendHTTPPost(), Exception: $e")
-            }
+                }
+            //catch exceptions from specific to general
+        } catch (e: NoTransformationFoundException) {
+            Timber.e("sendHTTPPost(), NoTransformationFoundException: $e")
+        } catch (e: SocketTimeoutException) {
+            Timber.e("sendHTTPPost(), SocketTimeoutException: $e")
+        } catch (e: IOException) {
+            Timber.e("sendHTTPPost(), IOException: $e")
+        } catch (e: Exception) {
+            Timber.e("sendHTTPPost(), Exception: $e")
         }
     }
 }
