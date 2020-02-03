@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import de.adesso_mobile.coroutinesadvanced.databinding.OverviewLibsFragmentBinding
+import de.adesso_mobile.coroutinesadvanced.ui.base.BaseFragment
 import org.koin.android.ext.android.inject
 
 
-class OverviewLibsFragment : Fragment() {
+class OverviewLibsFragment : BaseFragment() {
 
     val viewModel: OverviewLibsFragmentViewModel by inject()
 

@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_tabContainerFragment_to_viewpager2Tabs"
             app:destination="@id/menu_viewpager2_tabs" />
+        <action
+            android:id="@+id/action_tabContainerFragment_to_dummyFragment2"
+            app:destination="@id/dummyFragment2" />
 
     </fragment>
     <fragment
@@ -36,7 +39,8 @@
         android:id="@+id/dummyFragment"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment"
         android:label="dummy_fragment"
-        tools:layout="@layout/dummy_fragment" />
+        tools:layout="@layout/dummy_fragment" >
+    </fragment>
     <fragment
         android:id="@+id/menu_viewpager2_horizontal"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2HorizontalFragment"
@@ -52,4 +56,9 @@
         android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsDotsFragment"
         tools:layout="@layout/tab_container_fragment"
         android:label="Viewpager2Tabs" />
+    <fragment
+        android:id="@+id/dummyFragment2"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment2"
+        android:label="dummy2_fragment"
+        tools:layout="@layout/dummy2_fragment" />
 </navigation>
