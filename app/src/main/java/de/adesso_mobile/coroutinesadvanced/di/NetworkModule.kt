@@ -69,6 +69,7 @@ fun provideHTTPClient(httpLoggingSensitiveInterceptor: HttpLoggingSensitiveInter
     HttpResponseValidator {
         validateResponse { response ->
             val statusCode = response.status.value
+            Timber.d("Statuscode: $statusCode")
             when (statusCode) {
                 in 300..399 -> Timber.e(RedirectResponseException(response))
                 in 400..499 -> Timber.e(ClientRequestException(response))
