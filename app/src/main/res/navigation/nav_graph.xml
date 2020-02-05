@@ -60,5 +60,10 @@
         android:id="@+id/dummyFragment2"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment2"
         android:label="dummy2_fragment"
-        tools:layout="@layout/dummy2_fragment" />
+        tools:layout="@layout/dummy2_fragment" >
+        <argument
+            android:name="test"
+            app:argType="string"
+            android:defaultValue="test value" />
+    </fragment>
 </navigation>
