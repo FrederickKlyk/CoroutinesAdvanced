@@ -5,15 +5,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.adesso_mobile.coroutinesadvanced.R
+import de.adesso_mobile.coroutinesadvanced.domain.viewpager2.Category
 import kotlinx.android.synthetic.main.vierpager2_tab_cell.view.*
 
 class TabViewPagerAdapter : RecyclerView.Adapter<TabViewPagerViewHolder>() {
-    val eventList = listOf("0", "1", "2")
+
+    private var eventList: List<Category> = listOf()
+
+    fun setItem(list: List<Category>) {
+        this.eventList = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TabViewPagerViewHolder = TabViewPagerViewHolder(parent)
 
     override fun onBindViewHolder(holder: TabViewPagerViewHolder, position: Int) {
-        holder.bind(eventList[position])
+        holder.bind(eventList[position].name)
     }
 
     override fun getItemCount(): Int = eventList.size

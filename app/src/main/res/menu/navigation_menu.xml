@@ -12,7 +12,7 @@
         android:title="@string/menu_uebersicht_der_verwendeten_libs_title" />
     <item
         android:id="@+id/viewPagerHeader"
-        android:title="ViewPager 2">
+        android:title="@string/viewpager_2_pages_ueber_recyclerview">
         <menu>
             <item
                 android:id="@+id/menu_viewpager2_horizontal"

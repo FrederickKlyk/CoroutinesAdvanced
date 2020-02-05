@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import de.adesso_mobile.coroutinesadvanced.databinding.Viewpager2FragmentBinding
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseFragment
-import de.adesso_mobile.coroutinesadvanced.ui.viewpager2.common.CategoryAdapter
 import kotlinx.android.synthetic.main.viewpager2_fragment.*
 import org.koin.android.ext.android.inject
 

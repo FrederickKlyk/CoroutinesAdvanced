@@ -51,6 +51,7 @@ class TabContainerFragment : Fragment() {
 
     private fun initTabLayout() {
         TabLayoutMediator(mainTabs_TL, viewPagerForTabs){ tab, position ->
+                //Alle Tab-Title werden gesetzt
                 tab.text = tabAdapter.getPageTitle(position)
                 Timber.d("Tabs $position")
             }.attach()

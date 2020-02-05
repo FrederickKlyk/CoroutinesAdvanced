@@ -7,7 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
  * onPageScrollStateChange: Called when the scroll state changes
  * onPageScrolled: This method will be invoked when the current page is scrolled
  */
-class OnPageChangeCallback(private val lastItem: Int, private val listener: (Int) -> Unit) : ViewPager2.OnPageChangeCallback() {
+class TabLayoutOnPageChangeCallback(private val lastItem: Int, private val listener: (Int) -> Unit) : ViewPager2.OnPageChangeCallback() {
 
     override fun onPageSelected(position: Int) {
         super.onPageSelected(position)

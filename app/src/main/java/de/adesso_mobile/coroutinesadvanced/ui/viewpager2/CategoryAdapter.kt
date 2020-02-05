@@ -1,4 +1,4 @@
-package de.adesso_mobile.coroutinesadvanced.ui.viewpager2.common
+package de.adesso_mobile.coroutinesadvanced.ui.viewpager2
 
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +16,8 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder = CategoryViewHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
+        CategoryViewHolder(parent)
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.bind(list[position])
@@ -24,7 +25,6 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryViewHolder>() {
 
     override fun getItemCount(): Int = list.size
 }
-
 
 class CategoryViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
     constructor(parent: ViewGroup) : this(LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false))

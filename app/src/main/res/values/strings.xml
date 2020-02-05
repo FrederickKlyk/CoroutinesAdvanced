@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CoroutinesAdvanced</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="dummy_fragment_text">Ich bin bloß ein Dummy-Fragment</string>
     <string name="tab_coroutines_description">Auf dieser Seite werden Coroutines in Verbindung mit Ktor vorgestellt.</string>
@@ -9,9 +10,7 @@
     <string name="menu_uebersicht_der_verwendeten_libs_title">Übersicht der verwendeten Libs</string>
     <string name="viewpager2_horizontal">ViewPager2 Horizontal</string>
     <string name="viewpager2_vertical">ViewPager2 Vertical</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="viewpager2_tabs">ViewPager2 Tabs</string>
     <string name="viewpager2_pagetransition">ViewPager2 PageTransition</string>
+    <string name="viewpager_2_pages_ueber_recyclerview">ViewPager 2 (Recyclerview)</string>
 </resources>

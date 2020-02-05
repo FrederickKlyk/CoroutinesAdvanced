@@ -9,8 +9,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import de.adesso_mobile.coroutinesadvanced.databinding.Viewpager2FragmentBinding
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseFragment
-import de.adesso_mobile.coroutinesadvanced.ui.viewpager2.common.CategoryAdapter
-import de.adesso_mobile.coroutinesadvanced.ui.viewpager2.common.OnPageChangeCallback
+import de.adesso_mobile.coroutinesadvanced.ui.viewpager2.common.TabLayoutOnPageChangeCallback
 import de.adesso_mobile.coroutinesadvanced.ui.viewpager2.common.ViewPager2PageTransformation
 import kotlinx.android.synthetic.main.viewpager2_fragment.*
 import org.koin.android.ext.android.inject
@@ -20,7 +19,7 @@ class Viewpager2PageTransition : BaseFragment() {
 
     val viewModel: Viewpager2SharedViewModel by inject()
     private val adapter: CategoryAdapter by lazy { CategoryAdapter() }
-    private lateinit var onPageChangeCallback: OnPageChangeCallback
+    private lateinit var tabLayoutOnPageChangeCallback: TabLayoutOnPageChangeCallback
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return Viewpager2FragmentBinding.inflate(inflater).apply {
@@ -35,25 +34,19 @@ class Viewpager2PageTransition : BaseFragment() {
         setupViewPager2()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        viewPager2.unregisterOnPageChangeCallback(onPageChangeCallback)
-    }
-
     private fun setupViewPager2() {
         viewPager2.adapter = adapter
         adapter.setItem(viewModel.categories.value)
 
         // Springt auf die letzte Page, wenn die erste Page ausgewählt wird.
-        onPageChangeCallback = OnPageChangeCallback(lastItem = viewModel.categories.value.size - 1) {
+        tabLayoutOnPageChangeCallback = TabLayoutOnPageChangeCallback(lastItem = viewModel.categories.value.size - 1) {
             viewPager2.currentItem = it
         }
 
         // Abstände zwischen den Pages hinzufügen
         val marginPageTransformer = MarginPageTransformer(50)
 
-        viewPager2.registerOnPageChangeCallback(onPageChangeCallback)
+        viewPager2.registerOnPageChangeCallback(tabLayoutOnPageChangeCallback)
         viewPager2.setPageTransformer(CompositePageTransformer().apply {
             addTransformer(ViewPager2PageTransformation())
             addTransformer(translationPageTransformer())

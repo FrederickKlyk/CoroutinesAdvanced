@@ -56,7 +56,7 @@
         tools:layout="@layout/viewpager2_fragment" />
     <fragment
         android:id="@+id/menu_viewpager2_tabs"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsDotsFragment"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsPagesFragment"
         tools:layout="@layout/tab_container_fragment"
         android:label="Viewpager2Tabs" />
     <fragment
