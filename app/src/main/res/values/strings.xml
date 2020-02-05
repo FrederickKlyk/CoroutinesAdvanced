@@ -13,4 +13,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="viewpager2_tabs">ViewPager2 Tabs</string>
+    <string name="viewpager2_pagetransition">ViewPager2 PageTransition</string>
 </resources>

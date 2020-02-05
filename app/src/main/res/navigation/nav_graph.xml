@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_tabContainerFragment_to_dummyFragment2"
             app:destination="@id/dummyFragment2" />
+        <action
+            android:id="@+id/action_tabContainerFragment_to_viewpager2PageTransition"
+            app:destination="@id/menu_viewpager2_page_transition" />
 
     </fragment>
     <fragment
@@ -66,4 +69,8 @@
             app:argType="string"
             android:defaultValue="test value" />
     </fragment>
+    <fragment
+        android:id="@+id/menu_viewpager2_page_transition"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2PageTransition"
+        android:label="Viewpager2PageTransition" />
 </navigation>
