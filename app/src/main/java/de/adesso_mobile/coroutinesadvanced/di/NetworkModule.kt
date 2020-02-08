@@ -4,6 +4,7 @@ import de.adesso_mobile.coroutinesadvanced.common.HttpLoggingSensitiveIntercepto
 import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
 import io.ktor.client.HttpClient
+import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.engine.okhttp.OkHttp
@@ -15,11 +16,14 @@ import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.features.logging.SIMPLE
 import io.ktor.client.request.header
+import io.ktor.client.statement.HttpResponse
 import io.ktor.http.*
+import io.ktor.utils.io.errors.IOException
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import timber.log.Timber
+import java.net.SocketTimeoutException
 
 
 fun networkModule(baseUrl: String) = module {
@@ -67,7 +71,7 @@ fun provideHTTPClient(httpLoggingSensitiveInterceptor: HttpLoggingSensitiveInter
         level = LogLevel.ALL
     }
     HttpResponseValidator {
-        validateResponse { response ->
+        validateResponse { response: HttpResponse ->
             val statusCode = response.status.value
             Timber.d("Statuscode: $statusCode")
             when (statusCode) {
@@ -78,6 +82,24 @@ fun provideHTTPClient(httpLoggingSensitiveInterceptor: HttpLoggingSensitiveInter
 
             if (statusCode >= 600) {
                 Timber.e(ResponseException(response))
+            }
+        }
+
+        handleResponseException { cause: Throwable ->
+            //catch exceptions from specific to general
+            when (cause) {
+                is NoTransformationFoundException -> {
+                    Timber.e("sendHTTPPost(), NoTransformationFoundException: $cause")
+                }
+                is SocketTimeoutException -> {
+                    Timber.e("sendHTTPPost(), SocketTimeoutException: $cause")
+                }
+                is IOException -> {
+                    Timber.e("sendHTTPPost(), IOException: $cause")
+                }
+                is Exception -> {
+                    Timber.e("sendHTTPPost(), Exception: $cause")
+                }
             }
         }
     }

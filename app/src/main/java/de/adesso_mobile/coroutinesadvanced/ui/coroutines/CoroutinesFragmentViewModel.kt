@@ -2,6 +2,7 @@ package de.adesso_mobile.coroutinesadvanced.ui.coroutines
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import de.adesso_mobile.coroutinesadvanced.domain.lokalserver.LokalServerInteractor
 import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseViewModel
@@ -17,7 +18,8 @@ import java.net.SocketTimeoutException
 
 class CoroutinesFragmentViewModel(
     private val weatherApi: WeatherService,
-    private val lokalServerService: LokalServerService
+    private val lokalServerService: LokalServerService,
+    private val lokalServerInteractor: LokalServerInteractor
 ) : BaseViewModel() {
 
     val wetterDatenText = MutableLiveData<String>("")
@@ -57,24 +59,13 @@ class CoroutinesFragmentViewModel(
     }
 
     fun sendHTTPPost() = viewModelScope.launch {
-        try {
-            withContext(Dispatchers.IO) { lokalServerService.sendTestPost(postDataText.value ?: "") }
-                .apply {
-                    if (status.value == 200) {
-                        postDataResponseText.setValue(receive<LokalServerService.LokalServerResponse>().response)
-                    } else {
-                        postDataResponseText.setValue("Fehler beim Laden mit Statuscode ${status.value}")
-                    }
-                }
-            //catch exceptions from specific to general
-        } catch (e: NoTransformationFoundException) {
-            Timber.e("sendHTTPPost(), NoTransformationFoundException: $e")
-        } catch (e: SocketTimeoutException) {
-            Timber.e("sendHTTPPost(), SocketTimeoutException: $e")
-        } catch (e: IOException) {
-            Timber.e("sendHTTPPost(), IOException: $e")
-        } catch (e: Exception) {
-            Timber.e("sendHTTPPost(), Exception: $e")
-        }
+        withContext(Dispatchers.IO) { lokalServerInteractor.sendTestPost(postDataText.value ?: "") }
+            .fold({
+                postDataResponseText.setValue(it.response)
+            }, {
+                postDataResponseText.setValue("$ Fehler beim Laden mit Statuscode ${it.message}")
+            })
     }
+
+
 }

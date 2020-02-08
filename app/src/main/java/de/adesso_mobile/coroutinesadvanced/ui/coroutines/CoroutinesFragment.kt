@@ -24,7 +24,6 @@ class CoroutinesFragment : BaseFragment() {
     }
 
     companion object {
-
         fun newInstance() = CoroutinesFragment()
     }
 }

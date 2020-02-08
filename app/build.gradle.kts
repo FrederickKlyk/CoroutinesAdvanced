@@ -88,6 +88,10 @@ dependencies {
     // material
     implementation(Dependencies.material)
 
+    //Result<V,E>
+    implementation(Dependencies.kittinunf_result)
+    implementation(Dependencies.kittinunf_result_coroutines)
+
     // Test
     testImplementation(Dependencies.mockito_kotlin)
     implementation(Dependencies.fragment_testing)

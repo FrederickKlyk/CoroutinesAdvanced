@@ -2,6 +2,7 @@ package de.adesso_mobile.coroutinesadvanced
 
 import android.app.Application
 import de.adesso_mobile.coroutinesadvanced.di.commonModule
+import de.adesso_mobile.coroutinesadvanced.di.domainModule
 import de.adesso_mobile.coroutinesadvanced.di.networkModule
 import de.adesso_mobile.coroutinesadvanced.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -23,7 +24,8 @@ class App : Application() {
                 listOf(
                     viewModelModule,
                     commonModule,
-                    networkModule(baseUrl = "https://samples.openweathermap.org")
+                    networkModule(baseUrl = "https://samples.openweathermap.org"),
+                    domainModule
                 )
             )
         }
