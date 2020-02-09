@@ -1,8 +1,8 @@
 package de.adesso_mobile.coroutinesadvanced.di
 
-import de.adesso_mobile.coroutinesadvanced.common.HttpLoggingSensitiveInterceptor
-import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
-import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
+import de.adesso_mobile.coroutinesadvanced.io.network.common.HttpLoggingSensitiveInterceptor
+import de.adesso_mobile.coroutinesadvanced.io.network.lokalserver.LokalServerService
+import de.adesso_mobile.coroutinesadvanced.io.network.weather.WeatherService
 import io.ktor.client.HttpClient
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.engine.mock.MockEngine
@@ -41,7 +41,12 @@ fun networkModule(baseUrl: String) = module {
     single(named(MOCK_HTTP_CLIENT)) { provideMockHTTPClient() }
 
     // HTTP Services
-    single { WeatherService(client = get(named(DEFAULT_HTTP_CLIENT)), baseUrl = baseUrl) }
+    single {
+        WeatherService(
+            client = get(named(DEFAULT_HTTP_CLIENT)),
+            baseUrl = baseUrl
+        )
+    }
     single { LokalServerService(client = get(named(DEFAULT_HTTP_CLIENT))) }
 }
 

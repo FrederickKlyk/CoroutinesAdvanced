@@ -1,10 +1,9 @@
 package de.adesso_mobile.coroutinesadvanced.domain.lokalserver
 
 import com.github.kittinunf.result.Result
-import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
+import de.adesso_mobile.coroutinesadvanced.io.network.lokalserver.LokalServerService
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.call.receive
-import io.ktor.http.HttpStatusCode
 import io.ktor.utils.io.errors.IOException
 import java.net.SocketTimeoutException
 
@@ -12,11 +11,11 @@ class LokalServerInteractorImpl(
     private val lokalServerService: LokalServerService
 ) : LokalServerInteractor {
 
-    override suspend fun sendTestPost(value: String): Result<LokalServerService.LokalServerResponse, LokalServerException> {
+    override suspend fun sendTestPost(value: String): Result<LokalServerResponse, LokalServerException> {
         return try {
             lokalServerService.sendTestPost(value)
                 .run {
-                    if (status.value == 200) {
+                    if (status.value in 200..299) {
                         Result.success(receive())
                     } else {
                         Result.error(
@@ -46,3 +45,5 @@ data class LokalServerException(
     override var message: String,
     var isHttpStatusCode: Boolean = false
 ) : Exception()
+
+data class LokalServerResponse(val response: String)
