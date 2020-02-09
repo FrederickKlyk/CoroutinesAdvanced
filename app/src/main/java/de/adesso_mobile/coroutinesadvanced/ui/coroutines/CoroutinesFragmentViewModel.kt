@@ -63,7 +63,10 @@ class CoroutinesFragmentViewModel(
             .fold({
                 postDataResponseText.setValue(it.response)
             }, {
-                postDataResponseText.setValue("$ Fehler beim Laden mit Statuscode ${it.message}")
+                if (it.isHttpStatusCode)
+                    postDataResponseText.setValue("Fehler beim Laden mit Statuscode ${it.exceptionType}")
+                else
+                    postDataResponseText.setValue("${it.exceptionType}\n Exception Mesage:\n ${it.message}")
             })
     }
 
