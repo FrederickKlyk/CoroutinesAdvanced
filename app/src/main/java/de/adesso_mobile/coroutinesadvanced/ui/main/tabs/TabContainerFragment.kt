@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import de.adesso_mobile.coroutinesadvanced.databinding.TabContainerFragmentBinding
 import de.adesso_mobile.coroutinesadvanced.ui.base.viewpager2.FragmentStateViewPagerAdapter
-import de.adesso_mobile.coroutinesadvanced.ui.coroutines.CoroutinesFragment
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragment
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.FlowFragment
 import de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment
 import kotlinx.android.synthetic.main.tab_container_fragment.*
 import org.koin.android.ext.android.inject
@@ -43,7 +44,7 @@ class TabContainerFragment : Fragment() {
     private fun addFragmentsToViewPager() {
         tabAdapter.addFragment(CoroutinesFragment.newInstance(), "Coroutines")
         tabAdapter.addFragment(DummyFragment(), "Channel")
-        tabAdapter.addFragment(DummyFragment(), "Flow")
+        tabAdapter.addFragment(FlowFragment.newInstance(), "Flow")
 
         //ViewPager Adapter erhält TabAdapter mit den Fragmenten, die innerhalb des TabAdapter hinzugefügt worden sind
         viewPagerForTabs.adapter = tabAdapter

@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.coroutines.CoroutinesFragmentViewModel" />
+            type="de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.coroutines.CoroutinesFragment">
+        tools:context=".ui.main.coroutines.CoroutinesFragment">
 
         <TextView
             android:id="@+id/first_TV"

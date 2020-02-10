@@ -7,9 +7,9 @@ object Dependencies{
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
     // Android Lifecycle (architecture components)
-    const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycle_viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+    const val lifecycle_liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
     const val lifecycle_compiler = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
-    const val viewmodel_scope =    "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val lifecycle_testing = "androidx.arch.core:core-testing:${Versions.lifecycle_test}"
 
     // Koin DI

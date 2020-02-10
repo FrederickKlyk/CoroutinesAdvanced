@@ -1,4 +1,4 @@
-package de.adesso_mobile.coroutinesadvanced.ui.coroutines
+package de.adesso_mobile.coroutinesadvanced.ui.main.coroutines
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

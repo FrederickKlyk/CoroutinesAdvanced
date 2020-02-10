@@ -1,6 +1,7 @@
 package de.adesso_mobile.coroutinesadvanced.di
 
-import de.adesso_mobile.coroutinesadvanced.ui.coroutines.CoroutinesFragmentViewModel
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.FlowFragmentViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.MainActivityViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragmentViewModel
@@ -16,4 +17,5 @@ val viewModelModule = module {
     viewModel { OverviewLibsFragmentViewModel() }
     viewModel { Viewpager2SharedViewModel() }
     viewModel { Viewpager2TabsPagesViewModel() }
+    viewModel { FlowFragmentViewModel(weatherInteractor = get()) }
 }

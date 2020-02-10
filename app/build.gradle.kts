@@ -50,9 +50,9 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation(Dependencies.fragment)
 
-    // Architecture Components
-    implementation(Dependencies.lifecycle_extensions)
-    implementation(Dependencies.viewmodel_scope)
+    // Lifecycle
+    implementation(Dependencies.lifecycle_viewModel)
+    implementation(Dependencies.lifecycle_liveData)
     implementation(Dependencies.lifecycle_compiler)
     testImplementation(Dependencies.lifecycle_testing)
 

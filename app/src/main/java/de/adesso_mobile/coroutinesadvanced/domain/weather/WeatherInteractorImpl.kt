@@ -5,6 +5,8 @@ import de.adesso_mobile.coroutinesadvanced.io.network.weather.WeatherService
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.call.receive
 import io.ktor.utils.io.errors.IOException
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
 import java.net.SocketTimeoutException
 
 class WeatherInteractorImpl(
@@ -34,6 +36,22 @@ class WeatherInteractorImpl(
             Result.error(WeatherException("IOException", e.message.toString()))
         } catch (e: Exception) {
             Result.error(WeatherException("Exception", e.message.toString()))
+        }
+    }
+
+    override fun fetchWeatherStream() = flow {
+        // Fake data stream
+        while (true) {
+            delay(2000)
+            // Send a random fake weather forecast data
+            emit(
+                Weather(
+                    coord = Coordinate(10f, 20f),
+                    base = "TestEcke",
+                    main = Main(temp = (10..30).random().toFloat(), pressure = 1, humidity = 1, temp_min = 10f, temp_max = 30f),
+                    wind = Wind(speed = (0..10).random().toFloat(), deg = 1)
+                )
+            )
         }
     }
 }
