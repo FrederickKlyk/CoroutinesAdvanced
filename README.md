@@ -3,11 +3,13 @@
 Best Practices within modern architecture pattern.
 
 ## Features
+Multi module project
+
 MVVM
 
 Navigation Component within drawer layout
 
-Coroutines - Channles - Flow
+Coroutines - Channels - Flow
 
 Tablayout - viewpager2, materials
 

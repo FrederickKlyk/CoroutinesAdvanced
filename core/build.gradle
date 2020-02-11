@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
+
+    // Logging
+    implementation(Dependencies.timber)
+
+    // Koin
+    implementation(Dependencies.koin_core)
+    implementation(Dependencies.koin_android)
+
+    // Ktor
+    implementation(Dependencies.ktor_client_android)
+    implementation(Dependencies.ktor_client_gson)
+    implementation(Dependencies.ktor_client_okHttp)
+    implementation(Dependencies.ktor_client_logging_jvm)
+    implementation(Dependencies.okHttp_logging)
+
+    // Ktor Mock-Engine
+    api(Dependencies.ktor_client_mock_engine_jvm)
+}

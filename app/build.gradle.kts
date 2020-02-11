@@ -42,6 +42,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
     implementation("androidx.appcompat:appcompat:1.1.0")

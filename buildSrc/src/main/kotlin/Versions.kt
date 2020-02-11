@@ -14,4 +14,5 @@ object Versions {
     const val ktor_client_android = "1.3.0"
     const val ktor_client_json = "1.3.0"
     const val okHttp_logging = "4.2.1"
+    const val kittinunf_result = "2.3.0"
 }

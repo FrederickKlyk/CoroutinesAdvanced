@@ -1,4 +1,4 @@
-package de.adesso_mobile.coroutinesadvanced.common
+package de.adesso_mobile.android.core.common
 
 import okhttp3.Interceptor
 import okhttp3.Response

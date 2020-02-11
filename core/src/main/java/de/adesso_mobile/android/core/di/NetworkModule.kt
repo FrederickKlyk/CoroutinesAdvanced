@@ -1,8 +1,6 @@
-package de.adesso_mobile.coroutinesadvanced.di
+package de.adesso_mobile.android.core.di
 
-import de.adesso_mobile.coroutinesadvanced.common.HttpLoggingSensitiveInterceptor
-import de.adesso_mobile.coroutinesadvanced.io.network.LokalServerService
-import de.adesso_mobile.coroutinesadvanced.io.network.WeatherService
+import de.adesso_mobile.android.core.common.HttpLoggingSensitiveInterceptor
 import io.ktor.client.HttpClient
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.engine.mock.MockEngine
@@ -25,8 +23,7 @@ import org.koin.dsl.module
 import timber.log.Timber
 import java.net.SocketTimeoutException
 
-
-fun networkModule(baseUrl: String) = module {
+val networkModule = module {
     // OkHttp Logging
     single {
         HttpLoggingInterceptor().apply {
@@ -39,10 +36,6 @@ fun networkModule(baseUrl: String) = module {
     //Ktor Client
     single(named(DEFAULT_HTTP_CLIENT)) { provideHTTPClient(httpLoggingSensitiveInterceptor = get()) }
     single(named(MOCK_HTTP_CLIENT)) { provideMockHTTPClient() }
-
-    // HTTP Services
-    single { WeatherService(client = get(named(DEFAULT_HTTP_CLIENT)), baseUrl = baseUrl) }
-    single { LokalServerService(client = get(named(DEFAULT_HTTP_CLIENT))) }
 }
 
 /**
