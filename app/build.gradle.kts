@@ -7,7 +7,7 @@ plugins {
 
 android {
     compileSdkVersion(29)
-    buildToolsVersion = "29.0.2"
+    buildToolsVersion = "29.0.3"
     defaultConfig {
         applicationId = "de.adesso_mobile.coroutinesadvanced"
         minSdkVersion(23)
@@ -46,14 +46,14 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
     implementation("androidx.appcompat:appcompat:1.1.0")
-    implementation("androidx.core:core-ktx:1.1.0")
+    implementation("androidx.core:core-ktx:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation(Dependencies.fragment)
 
-    // Architecture Components
-    implementation(Dependencies.lifecycle_extensions)
-    implementation(Dependencies.viewmodel_scope)
+    // Lifecycle
+    implementation(Dependencies.lifecycle_viewModel)
+    implementation(Dependencies.lifecycle_liveData)
     implementation(Dependencies.lifecycle_compiler)
     testImplementation(Dependencies.lifecycle_testing)
 

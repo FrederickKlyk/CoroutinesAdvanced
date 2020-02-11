@@ -16,3 +16,5 @@ Tablayout - viewpager2, materials
 Kotlin DSL Gradle
 
 Koin
+
+Ktor client with optional mock engine

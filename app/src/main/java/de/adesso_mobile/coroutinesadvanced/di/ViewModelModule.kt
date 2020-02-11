@@ -1,6 +1,7 @@
 package de.adesso_mobile.coroutinesadvanced.di
 
-import de.adesso_mobile.coroutinesadvanced.ui.coroutines.CoroutinesFragmentViewModel
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.FlowFragmentViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.MainActivityViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragmentViewModel
@@ -12,8 +13,9 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { MainActivityViewModel() }
     viewModel { TabContainerViewModel() }
-    viewModel { CoroutinesFragmentViewModel(weatherApi = get(), lokalServerService = get(), lokalServerInteractor = get()) }
+    viewModel { CoroutinesFragmentViewModel(weatherInteractor = get(), lokalServerInteractor = get()) }
     viewModel { OverviewLibsFragmentViewModel() }
     viewModel { Viewpager2SharedViewModel() }
     viewModel { Viewpager2TabsPagesViewModel() }
+    viewModel { FlowFragmentViewModel(weatherInteractor = get()) }
 }

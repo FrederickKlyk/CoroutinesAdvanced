@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/tabContainerFragment">
+    app:startDestination="@id/menu_coroutines">
     <fragment
-        android:id="@+id/tabContainerFragment"
+        android:id="@+id/menu_coroutines"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerFragment"
         android:label="TabContainerFragment"
         tools:layout="@layout/tab_container_fragment">
@@ -37,6 +37,9 @@
         <action
             android:id="@+id/overviewLibsFragment_to_dummyFragment"
             app:destination="@id/dummyFragment" />
+        <action
+            android:id="@+id/action_menu_overviewLibs_to_tabContainerFragment"
+            app:destination="@id/menu_coroutines" />
     </fragment>
     <fragment
         android:id="@+id/dummyFragment"
