@@ -1,0 +1,20 @@
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.61"
+    // Einfacheres Erstellen von Klassen für die Annotation Processors
+    implementation "com.squareup:kotlinpoet:1.5.0"
+
+    // Konfigurationsgenerator für Service Provider
+    implementation "com.google.auto.service:auto-service:1.0-rc6"
+    kapt "com.google.auto.service:auto-service:1.0-rc6"
+
+    // Ermöglicht das Testen der Annotation Processors
+    testImplementation 'com.github.tschuchortdev:kotlin-compile-testing:1.2.6'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.amshove.kluent:kluent-android:1.44'
+}
