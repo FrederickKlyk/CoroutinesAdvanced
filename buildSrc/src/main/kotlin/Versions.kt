@@ -11,8 +11,8 @@ object Versions {
     const val mockito_kotlin = "2.2.0"
     const val fragment_version = "1.2.0-rc01"
     const val nav_version = "2.2.0"
-    const val ktor_client_android = "1.3.0"
-    const val ktor_client_json = "1.3.0"
+    const val ktor_client_android = "1.3.1"
+    const val ktor_client_json = "1.3.1"
     const val okHttp_logging = "4.2.1"
     const val kittinunf_result = "2.3.0"
 }
