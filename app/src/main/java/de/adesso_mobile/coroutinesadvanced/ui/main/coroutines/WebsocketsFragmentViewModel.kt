@@ -25,7 +25,6 @@ class WebsocketsFragmentViewModel(
     fun sendChatMessage() {
         viewModelScope.launch {
             websocketClient.ws(
-                method = HttpMethod.Get,
                 host = "10.0.2.2",
                 port = 8080, path = "/chat"
             ) {

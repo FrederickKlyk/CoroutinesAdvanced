@@ -24,14 +24,13 @@ class WebsocketsFragmentAdapter : RecyclerView.Adapter<WebsocketsFragmentAdapter
     override fun getItemCount(): Int = chatMessagesList.size
 
     override fun onBindViewHolder(holder: WebsocketsViewholder, position: Int) {
-
         holder.bind(chatMessagesList[position])
     }
 
     inner class WebsocketsViewholder(val binding: WebsocketsListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(message: String) {
-            binding.wsResponseTV.text = message
+            binding.viewModel = WebsocketsFragmentItemViewModel(message)
             binding.executePendingBindings()
         }
     }

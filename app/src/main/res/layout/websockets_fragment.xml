@@ -22,6 +22,8 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:hint="Chat message"
+            android:inputType="text"
+            android:imeOptions="actionDone|flagNoExtractUi"
             android:text="@={viewModel.wsChatMessage}"
             app:layout_constraintEnd_toStartOf="@+id/wsSendBUTTON"
             app:layout_constraintStart_toStartOf="parent"

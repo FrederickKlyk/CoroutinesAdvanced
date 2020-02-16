@@ -2,7 +2,9 @@
 <layout>
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.WebsocketsFragmentItemViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,6 +16,7 @@
             android:id="@+id/wsResponseTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{viewModel.responseMessage}"
             android:background="@color/colorDarkPrimary" />
     </LinearLayout>
 </layout>
