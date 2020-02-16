@@ -3,6 +3,7 @@ package de.adesso_mobile.coroutinesadvanced.di
 import de.adesso_mobile.coroutinesadvanced.ui.main.MainActivityViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.FlowFragmentViewModel
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.WebsocketsFragmentViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragmentViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2SharedViewModel
@@ -15,18 +16,11 @@ val viewModelModule = module {
     viewModel { MainActivityViewModel() }
     viewModel { TabContainerViewModel() }
     viewModel {
-        CoroutinesFragmentViewModel(
-            weatherInteractor = get(),
-            lokalServerInteractor = get()
-        )
+        CoroutinesFragmentViewModel(weatherInteractor = get(), lokalServerInteractor = get())
     }
     viewModel { OverviewLibsFragmentViewModel() }
     viewModel { Viewpager2SharedViewModel() }
     viewModel { Viewpager2TabsPagesViewModel() }
-    viewModel {
-        FlowFragmentViewModel(
-            weatherInteractor = get(),
-            websocketClient = get(named(DEFAULT_HTTP_CLIENT))
-        )
-    }
+    viewModel { FlowFragmentViewModel(weatherInteractor = get()) }
+    viewModel { WebsocketsFragmentViewModel(websocketClient = get(named(DEFAULT_HTTP_CLIENT))) }
 }

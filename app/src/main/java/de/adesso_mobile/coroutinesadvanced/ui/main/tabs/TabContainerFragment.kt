@@ -12,6 +12,7 @@ import de.adesso_mobile.coroutinesadvanced.ui.base.viewpager2.FragmentStateViewP
 import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragment
 import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.FlowFragment
 import de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment
+import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.WebsocketsFragment
 import kotlinx.android.synthetic.main.tab_container_fragment.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -29,7 +30,6 @@ class TabContainerFragment : Fragment() {
             lifecycleOwner = this@TabContainerFragment
         }.root
 
-
         return view
     }
 
@@ -45,6 +45,7 @@ class TabContainerFragment : Fragment() {
         tabAdapter.addFragment(CoroutinesFragment.newInstance(), "Coroutines")
         tabAdapter.addFragment(DummyFragment(), "Channel")
         tabAdapter.addFragment(FlowFragment.newInstance(), "Flow")
+        tabAdapter.addFragment(WebsocketsFragment.newInstance(), "Websockets")
 
         //ViewPager Adapter erhält TabAdapter mit den Fragmenten, die innerhalb des TabAdapter hinzugefügt worden sind
         viewPagerForTabs.adapter = tabAdapter

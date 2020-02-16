@@ -38,7 +38,9 @@ android {
         pickFirst("META-INF/ktor-io.kotlin_module")
     }
 
-    tasks.withType < org.jetbrains.kotlin.gradle.tasks.KotlinCompile > { kotlinOptions.jvmTarget = "1.8" }
+    tasks.withType < org.jetbrains.kotlin.gradle.tasks.KotlinCompile > {
+        kotlinOptions.jvmTarget = "1.8"
+    }
 }
 
 dependencies {
