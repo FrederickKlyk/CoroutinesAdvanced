@@ -13,6 +13,7 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.client.features.logging.SIMPLE
+import io.ktor.client.features.websocket.WebSockets
 import io.ktor.client.request.header
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.*
@@ -33,7 +34,7 @@ val networkModule = module {
     // OkHttp Logging mit sensitiven Routen
     single { HttpLoggingSensitiveInterceptor(httpLoggingInterceptor = get()) }
 
-    //Ktor Client
+    //Ktor Clients
     single(named(DEFAULT_HTTP_CLIENT)) { provideHTTPClient(httpLoggingSensitiveInterceptor = get()) }
     single(named(MOCK_HTTP_CLIENT)) { provideMockHTTPClient() }
 }
@@ -63,6 +64,8 @@ fun provideHTTPClient(httpLoggingSensitiveInterceptor: HttpLoggingSensitiveInter
         logger = Logger.SIMPLE
         level = LogLevel.ALL
     }
+    //Ktor Websockets
+    install(WebSockets)
     HttpResponseValidator {
         validateResponse { response: HttpResponse ->
             val statusCode = response.status.value

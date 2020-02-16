@@ -25,6 +25,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/wsMessageET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.wsChatMessage}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weatherTV"/>
+
+        <Button
+            android:id="@+id/wsSendBUTTON"
+            android:layout_width="wrap_content"
+            android:text="send"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.sendChatMessage()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weatherTV" />
+
+        <TextView
+            android:id="@+id/wsResponseTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.wsResponse}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wsMessageET"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
