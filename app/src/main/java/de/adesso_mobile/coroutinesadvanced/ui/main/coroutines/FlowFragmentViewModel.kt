@@ -7,7 +7,9 @@ import de.adesso_mobile.coroutinesadvanced.domain.weather.WeatherInteractor
 import de.adesso_mobile.coroutinesadvanced.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.transform
 
 class FlowFragmentViewModel(
     weatherInteractor: WeatherInteractor
@@ -15,6 +17,7 @@ class FlowFragmentViewModel(
 
     private val _weatherForcast = weatherInteractor
         .fetchWeatherStream()
+        .distinctUntilChanged()
         .map {
             delay(1000)
 

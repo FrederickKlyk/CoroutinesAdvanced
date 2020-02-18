@@ -21,10 +21,8 @@ class CoroutinesFragmentViewModel(
     fun initialize() = viewModelScope.launch {
         withContext(Dispatchers.IO) { weatherInteractor.fetchWeather() }
             .fold({ weather ->
-                wetterDatenText.value = "Basis: ${weather.base} \n${weather.coord}\nTemperatur: ${String.format(
-                    "%.2f",
-                    weather.main.temp - 273.15
-                )}°c \nWindstufe: ${weather.wind.speed}"
+                wetterDatenText.value = "Basis: ${weather.base} \n${weather.coord}\nTemperatur: ${String
+                    .format("%.2f", weather.main.temp - 273.15)}°c \nWindstufe: ${weather.wind.speed}"
             }, {
                 if (it.isHttpStatusCode)
                     wetterDatenText.value = "Fehler beim Laden mit Statuscode ${it.exceptionType}"
