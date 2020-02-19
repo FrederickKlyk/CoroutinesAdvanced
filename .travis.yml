@@ -1,0 +1,11 @@
+language: android
+dist: trusty
+android:
+  components:
+    - build-tools-29.0.3
+    - android-29
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-x86-android-26
+      licenses:
+    - 'android-sdk-license-.+'
