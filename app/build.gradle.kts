@@ -1,9 +1,9 @@
 plugins {
     id("com.android.application")
+    jacoco
     id("androidx.navigation.safeargs")
     kotlin("android")
     kotlin("android.extensions")
-    id("jacoco")
 }
 
 android {
