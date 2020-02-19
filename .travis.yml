@@ -1,5 +1,5 @@
 language: android
-dist: trusty
+jdk: oraclejdk8
 android:
   components:
     - build-tools-29.0.3
@@ -14,4 +14,6 @@ android:
 before_install:
  - chmod +x gradlew
 script: 
-    ./gradlew assembleDebug testDebug
+    ./gradlew clean jacocoTestReport assembleDebug testDebug
+after_success:
+  - bash <(curl -s https://codecov.io/bash) 
