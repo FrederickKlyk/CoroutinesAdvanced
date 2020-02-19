@@ -8,7 +8,6 @@ plugins {
 
 jacoco {
     toolVersion = "0.8.5"
-    reportsDir = file("$buildDir/customJacocoReportDir")
 }
 
 android {
