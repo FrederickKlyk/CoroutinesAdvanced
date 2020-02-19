@@ -6,6 +6,11 @@ plugins {
     kotlin("android.extensions")
 }
 
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
 android {
     compileSdkVersion(29)
     buildToolsVersion = "29.0.3"
