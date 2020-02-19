@@ -1,4 +1,4 @@
-# Coroutines Advanced
+# Coroutines Advanced [![Build Status](https://travis-ci.com/FrederickKlyk/CoroutinesAdvanced.svg?branch=master)](https://travis-ci.com/FrederickKlyk/CoroutinesAdvanced)
 
 Best Practices within modern architecture pattern.
 
