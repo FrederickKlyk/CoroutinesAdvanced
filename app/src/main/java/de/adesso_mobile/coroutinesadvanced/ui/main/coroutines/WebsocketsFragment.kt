@@ -40,7 +40,7 @@ class WebsocketsFragment : Fragment() {
     }
 
     private fun observeLiveData() {
-        viewModel.wsResponse.observe(this, Observer {
+        viewModel.wsResponse.observe(viewLifecycleOwner, Observer {
             adapter.addMessage(it)
         })
     }
