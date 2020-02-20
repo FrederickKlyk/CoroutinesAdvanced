@@ -95,7 +95,7 @@ dependencies {
     implementation(Dependencies.ktor_client_logging_jvm)
     implementation(Dependencies.okHttp_logging)
     // Ktor Mock-Engine
-    api(Dependencies.ktor_client_mock_engine_jvm)
+    implementation(Dependencies.ktor_client_mock_engine_jvm)
 
     // Viewpager2
     implementation(Dependencies.viewpager2)
@@ -110,6 +110,7 @@ dependencies {
     // Test
     testImplementation(Dependencies.mockito_kotlin)
     implementation(Dependencies.fragment_testing)
+    testImplementation("org.amshove.kluent:kluent-android:1.60")
     testImplementation("junit:junit:4.12")
     androidTestImplementation("androidx.test:runner:1.2.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")

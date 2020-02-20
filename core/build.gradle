@@ -41,5 +41,5 @@ dependencies {
     implementation(Dependencies.okHttp_logging)
 
     // Ktor Mock-Engine
-    api(Dependencies.ktor_client_mock_engine_jvm)
+    implementation(Dependencies.ktor_client_mock_engine_jvm)
 }
