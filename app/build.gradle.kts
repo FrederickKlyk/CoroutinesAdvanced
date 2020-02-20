@@ -5,6 +5,9 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
 }
+apply{
+    from("../buildSrc/jacoco.gradle")
+}
 
 jacoco {
     toolVersion = "0.8.5"
