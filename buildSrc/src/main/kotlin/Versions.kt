@@ -9,6 +9,7 @@ object Versions {
     const val viewpager2 = "1.0.0"
     const val material = "1.2.0-alpha04"
     const val mockito_kotlin = "2.2.0"
+    const val mockito_kotlin_inline = "3.2.4"
     const val fragment_version = "1.2.0-rc01"
     const val nav_version = "2.2.0"
     const val ktor_client_android = "1.3.1"

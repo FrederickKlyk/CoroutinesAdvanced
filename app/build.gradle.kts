@@ -109,6 +109,7 @@ dependencies {
 
     // Test
     testImplementation(Dependencies.mockito_kotlin)
+    testImplementation(Dependencies.mockito_kotlin_inline)
     implementation(Dependencies.fragment_testing)
     testImplementation("org.amshove.kluent:kluent-android:1.60")
     testImplementation("junit:junit:4.12")

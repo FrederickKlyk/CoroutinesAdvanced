@@ -28,6 +28,7 @@ object Dependencies{
 
     // JUnit
     const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
+    const val mockito_kotlin_inline = "org.mockito:mockito-inline:${Versions.mockito_kotlin_inline}"
 
     //Fragment
     const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment_version}"
