@@ -68,9 +68,9 @@
         android:label="dummy2_fragment"
         tools:layout="@layout/dummy2_fragment" >
         <argument
-            android:name="test"
+            android:name="message"
             app:argType="string"
-            android:defaultValue="test value" />
+            android:defaultValue='""' />
     </fragment>
     <fragment
         android:id="@+id/menu_viewpager2_page_transition"

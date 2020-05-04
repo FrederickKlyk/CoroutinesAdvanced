@@ -20,8 +20,10 @@ class DummyFragment2 : BaseFragment() {
 
         val myArg = arguments?.get("test")
         val testArg = arguments?.get("test2")
+        val message = arguments?.get("message")
         Timber.d("my Arg: $myArg")
         Timber.d("my Arg2: $testArg")
+        Timber.d("my message: $message")
         return inflater.inflate(R.layout.dummy2_fragment, container, false)
     }
 }
