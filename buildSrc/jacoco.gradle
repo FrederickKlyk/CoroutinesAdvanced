@@ -17,7 +17,7 @@ task jacocoXmlReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
         csv.enabled = false
     }
 
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree], [kotlinDebugTree])
-    executionData = fileTree(dir: buildDir, includes: ['**/*.exec', '**/*.ec'])
+    sourceDirectories.from = files([mainSrc])
+    classDirectories.from = files([debugTree], [kotlinDebugTree])
+    executionData.from = fileTree(dir: buildDir, includes: ['**/*.exec', '**/*.ec'])
 }
