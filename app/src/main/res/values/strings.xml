@@ -13,4 +13,6 @@
     <string name="viewpager2_tabs">ViewPager2 Tabs</string>
     <string name="viewpager2_pagetransition">ViewPager2 PageTransition</string>
     <string name="viewpager_2_pages_ueber_recyclerview">ViewPager 2 (Recyclerview)</string>
+    <string name="recyclerview_mit_diffutil">RecyclerView mit DiffUtil</string>
+    <string name="recyclerview_listadapter_diffutil">RecyclerView ListAdapter (DiffUtil)</string>
 </resources>

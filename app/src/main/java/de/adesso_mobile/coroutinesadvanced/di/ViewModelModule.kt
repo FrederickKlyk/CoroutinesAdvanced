@@ -1,5 +1,6 @@
 package de.adesso_mobile.coroutinesadvanced.di
 
+import de.adesso_mobile.coroutinesadvanced.ui.list.ListFragmentViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.MainActivityViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel
 import de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.FlowFragmentViewModel
@@ -23,4 +24,5 @@ val viewModelModule = module {
     viewModel { Viewpager2TabsPagesViewModel() }
     viewModel { FlowFragmentViewModel(weatherInteractor = get()) }
     viewModel { WebsocketsFragmentViewModel(websocketClient = get(named(DEFAULT_HTTP_CLIENT))) }
+    viewModel { ListFragmentViewModel() }
 }

@@ -32,4 +32,15 @@
                 android:title="@string/viewpager2_tabs" />
         </menu>
     </item>
+
+    <item
+        android:id="@+id/recyclerHeader"
+        android:title="@string/recyclerview_mit_diffutil">
+        <menu>
+            <item
+                android:id="@+id/menu_recycler_diffutil"
+                android:icon="@android:mipmap/sym_def_app_icon"
+                android:title="@string/recyclerview_listadapter_diffutil" />
+        </menu>
+    </item>
 </menu>

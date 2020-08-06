@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_tabContainerFragment_to_viewpager2PageTransition"
             app:destination="@id/menu_viewpager2_page_transition" />
+        <action
+            android:id="@+id/action_menu_coroutines_to_listFragment"
+            app:destination="@id/menu_recycler_diffutil" />
 
     </fragment>
     <fragment
@@ -76,4 +79,9 @@
         android:id="@+id/menu_viewpager2_page_transition"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2PageTransition"
         android:label="Viewpager2PageTransition" />
+    <fragment
+        android:id="@+id/menu_recycler_diffutil"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.list.ListFragment"
+        tools:layout="@layout/list_fragment"
+        android:label="ListFragment" />
 </navigation>

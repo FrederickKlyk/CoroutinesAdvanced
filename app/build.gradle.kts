@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs")
     kotlin("android")
     kotlin("android.extensions")
+    id("kotlin-android")
 }
 apply{
     from("../buildSrc/jacoco.gradle")
