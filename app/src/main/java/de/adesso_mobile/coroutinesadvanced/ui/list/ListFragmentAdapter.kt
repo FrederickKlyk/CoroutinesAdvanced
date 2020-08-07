@@ -33,7 +33,7 @@ class ListFragmentAdapter : ListAdapter<String, ListFragmentAdapter.ListFragment
     inner class ListFragmentViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         fun bind(text: String) {
-            itemView.item_tv.text = text
+            containerView.item_tv.text = text
         }
     }
 }

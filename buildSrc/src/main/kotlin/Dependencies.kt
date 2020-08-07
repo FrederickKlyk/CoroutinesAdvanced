@@ -49,6 +49,9 @@ object Dependencies{
     // OkHttp Logging
     const val okHttp_logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp_logging}"
 
+    // Paging
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging_version}"
+
     // Result<V,E>
     const val kittinunf_result = "com.github.kittinunf.result:result:${Versions.kittinunf_result}"
     const val kittinunf_result_coroutines = "com.github.kittinunf.result:result-coroutines:${Versions.kittinunf_result}"

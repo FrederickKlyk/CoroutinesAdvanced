@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_menu_coroutines_to_listFragment"
             app:destination="@id/menu_recycler_diffutil" />
+        <action
+            android:id="@+id/action_menu_coroutines_to_moviePagingFragment"
+            app:destination="@id/menu_recycler_paging" />
 
     </fragment>
     <fragment
@@ -48,8 +51,7 @@
         android:id="@+id/dummyFragment"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment"
         android:label="dummy_fragment"
-        tools:layout="@layout/dummy_fragment" >
-    </fragment>
+        tools:layout="@layout/dummy_fragment"></fragment>
     <fragment
         android:id="@+id/menu_viewpager2_horizontal"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2HorizontalFragment"
@@ -63,17 +65,17 @@
     <fragment
         android:id="@+id/menu_viewpager2_tabs"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsPagesFragment"
-        tools:layout="@layout/tab_container_fragment"
-        android:label="Viewpager2Tabs" />
+        android:label="Viewpager2Tabs"
+        tools:layout="@layout/tab_container_fragment" />
     <fragment
         android:id="@+id/dummyFragment2"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment2"
         android:label="dummy2_fragment"
-        tools:layout="@layout/dummy2_fragment" >
+        tools:layout="@layout/dummy2_fragment">
         <argument
             android:name="message"
-            app:argType="string"
-            android:defaultValue='""' />
+            android:defaultValue='""'
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/menu_viewpager2_page_transition"
@@ -82,6 +84,11 @@
     <fragment
         android:id="@+id/menu_recycler_diffutil"
         android:name="de.adesso_mobile.coroutinesadvanced.ui.list.ListFragment"
-        tools:layout="@layout/list_fragment"
-        android:label="ListFragment" />
+        android:label="ListFragment"
+        tools:layout="@layout/list_fragment" />
+    <fragment
+        android:id="@+id/menu_recycler_paging"
+        android:name="de.adesso_mobile.coroutinesadvanced.ui.paging.MoviePagingFragment"
+        android:label="MoviePagingFragment"
+        tools:layout="@layout/movie_paging_fragment" />
 </navigation>

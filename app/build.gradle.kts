@@ -72,6 +72,9 @@ dependencies {
     implementation(Dependencies.lifecycle_compiler)
     testImplementation(Dependencies.lifecycle_testing)
 
+    // Paging
+    implementation(Dependencies.paging)
+
     // Navigation
     implementation(Dependencies.navigation_fragment)
     implementation(Dependencies.navigation_ui)

@@ -20,8 +20,6 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val view=  ListFragmentBinding.inflate(inflater).apply {
             lifecycleOwner = this@ListFragment
             viewModel = this@ListFragment.viewModel
@@ -37,11 +35,11 @@ class ListFragment : Fragment() {
         subscribeObservers()
 
         view.listFragmentButton.setOnClickListener{
-            adapter.submitList(listOf("test", "hi", "omg"))
+            adapter.submitList(listOf("1", "2", "3", "4", "5"))
         }
     }
 
     private fun subscribeObservers() {
-        adapter.submitList(listOf("hi", "test"))
+        adapter.submitList(listOf("8", "3", "9", "1"))
     }
 }

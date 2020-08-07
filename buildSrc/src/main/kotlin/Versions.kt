@@ -16,4 +16,5 @@ object Versions {
     const val ktor_client_json = "1.3.1"
     const val okHttp_logging = "4.2.1"
     const val kittinunf_result = "2.3.0"
+    const val paging_version = "3.0.0-alpha04"
 }
