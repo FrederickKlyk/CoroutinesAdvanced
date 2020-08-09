@@ -57,7 +57,7 @@ class MovieRemoteMediator(
                 movieDao.insertAll(movies)
             }
 
-            return MediatorResult.Success(endOfPaginationReached = true)
+            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: IOException) {
             Timber.d("MOVIES FAIL:::::::::: ${e.message}")
             return MediatorResult.Error(e)
