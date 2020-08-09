@@ -7,11 +7,9 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "movie")
 data class Movie (
 
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0,
-
+    @PrimaryKey
     @field:SerializedName("Title")
-    val title: String?,
+    var title: String = "",
 
     @field:SerializedName("Type")
     val type: String?,

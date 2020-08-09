@@ -11,7 +11,10 @@ import de.adesso_mobile.coroutinesadvanced.io.db.movies.MovieDatabase
 import de.adesso_mobile.coroutinesadvanced.io.network.movies.MovieResponse
 import de.adesso_mobile.coroutinesadvanced.io.network.movies.MovieService
 import io.ktor.client.call.receive
+import timber.log.Timber
 import java.io.IOException
+
+private const val GITHUB_STARTING_PAGE_INDEX = 1
 
 @ExperimentalPagingApi
 class MovieRemoteMediator(
@@ -23,25 +26,41 @@ class MovieRemoteMediator(
     var page = 1
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Movie>): MediatorResult {
-        return try {
-            val response = movieService.fetchMovies(s = query, page = page).receive<MovieResponse>()
+        Timber.d("MOVIES:::::::::: ${loadType.name}")
+
+        val loadKey = when (loadType) {
+            LoadType.REFRESH -> {
+                1
+            }
+            //Wird geladen beim Start einer PagingData
+            LoadType.PREPEND -> {
+                return MediatorResult.Success(endOfPaginationReached = true)
+            }
+            // Wird geladen beim Ende einer PagingData
+            LoadType.APPEND -> {
+                state.lastItemOrNull() ?: return MediatorResult.Success(endOfPaginationReached = true)
+                page + 1
+            }
+        }
+
+        try {
+            val response = movieService.fetchMovies(s = query, page = loadKey).receive<MovieResponse>().search
+            val endOfPaginationReached = response.isEmpty()
             page += 1
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
                     movieDao.deleteByQuery(query)
                 }
+                val movies = response.map { Movie(title = it.title ?: "null", type = it.type, year = it.year, imdbID = it.imdbID, poster = it.poster) }
 
-                // Insert new users into database, which invalidates the
-                // current PagingData, allowing Paging to present the updates
-                // in the DB.
-                val movies = response.search.map { Movie(title = it.title, type = it.type, year = it.year, imdbID = it.imdbID, poster = it.poster) }
                 movieDao.insertAll(movies)
             }
 
-            MediatorResult.Success(endOfPaginationReached = page == 10)
+            return MediatorResult.Success(endOfPaginationReached = true)
         } catch (e: IOException) {
-            MediatorResult.Error(e)
+            Timber.d("MOVIES FAIL:::::::::: ${e.message}")
+            return MediatorResult.Error(e)
         }
     }
 }

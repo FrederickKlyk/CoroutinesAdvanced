@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.movie_paging_fragment.view.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MoviePagingFragment : Fragment() {
 
@@ -45,6 +46,7 @@ class MoviePagingFragment : Fragment() {
     private fun subscribeObservers() {
         lifecycleScope.launch {
             viewModel.movies.collectLatest { pagingData ->
+                Timber.d("submit list")
                 movieAdapter.submitData(pagingData)
             }
         }

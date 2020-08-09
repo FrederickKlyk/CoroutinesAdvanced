@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import de.adesso_mobile.coroutinesadvanced.R
 import de.adesso_mobile.coroutinesadvanced.io.db.movies.Movie
-import de.adesso_mobile.coroutinesadvanced.io.network.movies.SearchItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.movie_paging_item.view.*
+import timber.log.Timber
 
-class MoviePagingAdapter() : PagingDataAdapter<SearchItem, MoviePagingAdapter.MovieViewHolder>(MovieDiffUtil) {
+class MoviePagingAdapter() : PagingDataAdapter<Movie, MoviePagingAdapter.MovieViewHolder>(MovieDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.movie_paging_item, parent, false))
@@ -23,20 +23,20 @@ class MoviePagingAdapter() : PagingDataAdapter<SearchItem, MoviePagingAdapter.Mo
         holder.bind(item)
     }
 
-    object MovieDiffUtil : DiffUtil.ItemCallback<SearchItem>() {
-        override fun areItemsTheSame(oldItem: SearchItem, newItem: SearchItem): Boolean {
+    object MovieDiffUtil : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             // Id is unique.
             return oldItem.title == newItem.title
         }
 
-        override fun areContentsTheSame(oldItem: SearchItem, newItem: SearchItem): Boolean {
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem == newItem
         }
     }
 
     inner class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-        fun bind(item: SearchItem?) {
+        fun bind(item: Movie?) {
             containerView.movieItemTV.text = item?.title
         }
     }
