@@ -1,10 +1,8 @@
-package de.adesso_mobile.coroutinesadvanced.io.network.flickr
+package de.adesso_mobile.coroutinesadvanced.io.network.movies
 
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpStatement
-import io.ktor.http.HttpMethod
-import io.ktor.util.AttributeKey
 
 class MovieService(val client: HttpClient, val baseUrl: String) {
 

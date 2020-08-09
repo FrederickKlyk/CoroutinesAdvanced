@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs")
     kotlin("android")
     kotlin("android.extensions")
+    id("kotlin-kapt")
     id("kotlin-android")
 }
 apply{
@@ -74,6 +75,11 @@ dependencies {
 
     // Paging
     implementation(Dependencies.paging)
+
+    // Room
+    implementation(Dependencies.room_runtime)
+    implementation(Dependencies.room_ktx)
+    kapt(Dependencies.room_compiler)
 
     // Navigation
     implementation(Dependencies.navigation_fragment)

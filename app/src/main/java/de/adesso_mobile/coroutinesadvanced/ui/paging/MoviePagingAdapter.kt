@@ -7,8 +7,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import de.adesso_mobile.coroutinesadvanced.R
+import de.adesso_mobile.coroutinesadvanced.io.db.movies.Movie
+import de.adesso_mobile.coroutinesadvanced.io.network.movies.SearchItem
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_fragment_item.view.*
 import kotlinx.android.synthetic.main.movie_paging_item.view.*
 
 class MoviePagingAdapter() : PagingDataAdapter<SearchItem, MoviePagingAdapter.MovieViewHolder>(MovieDiffUtil) {

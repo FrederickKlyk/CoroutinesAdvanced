@@ -1,6 +1,6 @@
 package de.adesso_mobile.coroutinesadvanced.di
 
-import de.adesso_mobile.coroutinesadvanced.io.network.flickr.MovieService
+import de.adesso_mobile.coroutinesadvanced.io.network.movies.MovieService
 import de.adesso_mobile.coroutinesadvanced.io.network.lokalserver.LokalServerService
 import de.adesso_mobile.coroutinesadvanced.io.network.weather.WeatherService
 import org.koin.core.qualifier.named

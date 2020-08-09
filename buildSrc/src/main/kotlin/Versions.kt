@@ -17,4 +17,5 @@ object Versions {
     const val okHttp_logging = "4.2.1"
     const val kittinunf_result = "2.3.0"
     const val paging_version = "3.0.0-alpha04"
+    const val room = "2.3.0-alpha02"
 }

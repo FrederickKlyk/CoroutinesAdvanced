@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.adesso_mobile.coroutinesadvanced.databinding.MoviePagingFragmentBinding
 import kotlinx.android.synthetic.main.movie_paging_fragment.view.*
@@ -28,6 +29,7 @@ class MoviePagingFragment : Fragment() {
         }.root
     }
 
+    @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -39,6 +41,7 @@ class MoviePagingFragment : Fragment() {
         subscribeObservers()
     }
 
+    @ExperimentalPagingApi
     private fun subscribeObservers() {
         lifecycleScope.launch {
             viewModel.movies.collectLatest { pagingData ->

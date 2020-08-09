@@ -1,7 +1,9 @@
 package de.adesso_mobile.coroutinesadvanced.ui.paging
 
 import androidx.paging.PagingSource
-import de.adesso_mobile.coroutinesadvanced.io.network.flickr.MovieService
+import de.adesso_mobile.coroutinesadvanced.io.network.movies.MovieResponse
+import de.adesso_mobile.coroutinesadvanced.io.network.movies.MovieService
+import de.adesso_mobile.coroutinesadvanced.io.network.movies.SearchItem
 import io.ktor.client.call.receive
 import timber.log.Timber
 

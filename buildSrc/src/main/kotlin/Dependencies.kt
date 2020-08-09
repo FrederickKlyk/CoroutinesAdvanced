@@ -52,6 +52,11 @@ object Dependencies{
     // Paging
     const val paging = "androidx.paging:paging-runtime:${Versions.paging_version}"
 
+    // Room
+    const val room_runtime =  "androidx.room:room-runtime:${Versions.room}"
+    const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
+    const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
+
     // Result<V,E>
     const val kittinunf_result = "com.github.kittinunf.result:result:${Versions.kittinunf_result}"
     const val kittinunf_result_coroutines = "com.github.kittinunf.result:result-coroutines:${Versions.kittinunf_result}"
