@@ -1,4 +1,4 @@
-object Dependencies{
+object Dependencies {
     // System libs
     const val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
     const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
@@ -37,7 +37,7 @@ object Dependencies{
     // Navigation
     const val navigation_fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.nav_version}"
     const val navigation_ui = "androidx.navigation:navigation-ui-ktx:${Versions.nav_version}"
-    const val navigation_safe_args =  "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}"
+    const val navigation_safe_args = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}"
 
     // Ktor
     const val ktor_client_android = "io.ktor:ktor-client-android:${Versions.ktor_client_android}"
@@ -53,9 +53,12 @@ object Dependencies{
     const val paging = "androidx.paging:paging-runtime:${Versions.paging_version}"
 
     // Room
-    const val room_runtime =  "androidx.room:room-runtime:${Versions.room}"
+    const val room_runtime = "androidx.room:room-runtime:${Versions.room}"
     const val room_compiler = "androidx.room:room-compiler:${Versions.room}"
     const val room_ktx = "androidx.room:room-ktx:${Versions.room}"
+
+    // Coil
+    const val coil = "io.coil-kt:coil:${Versions.coil}"
 
     // Result<V,E>
     const val kittinunf_result = "com.github.kittinunf.result:result:${Versions.kittinunf_result}"

@@ -4,7 +4,7 @@ object Versions {
     const val timber = "4.7.1"
     const val lifecycle = "2.2.0"
     const val lifecycle_test = "2.1.0"
-    const val coroutines = "1.3.3"
+    const val coroutines = "1.3.8"
     const val koin = "2.0.1"
     const val viewpager2 = "1.0.0"
     const val material = "1.2.0-alpha04"
@@ -18,4 +18,5 @@ object Versions {
     const val kittinunf_result = "2.3.0"
     const val paging_version = "3.0.0-alpha04"
     const val room = "2.3.0-alpha02"
+    const val coil = "0.11.0"
 }

@@ -7,7 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("kotlin-android")
 }
-apply{
+apply {
     from("../buildSrc/jacoco.gradle")
 }
 
@@ -47,9 +47,6 @@ android {
     }
     packagingOptions {
         pickFirst("META-INF/kotlinx-coroutines-core.kotlin_module")
-        pickFirst("META-INF/ktor-http.kotlin_module")
-        pickFirst("META-INF/ktor-utils.kotlin_module")
-        pickFirst("META-INF/ktor-io.kotlin_module")
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -113,6 +110,9 @@ dependencies {
     // material
     implementation(Dependencies.material)
 
+    // Coil
+    implementation(Dependencies.coil)
+
     //Result<V,E>
     implementation(Dependencies.kittinunf_result)
     implementation(Dependencies.kittinunf_result_coroutines)
@@ -121,8 +121,8 @@ dependencies {
     testImplementation(Dependencies.mockito_kotlin)
     testImplementation(Dependencies.mockito_kotlin_inline)
     implementation(Dependencies.fragment_testing)
-    testImplementation("org.amshove.kluent:kluent-android:1.60")
-    testImplementation("junit:junit:4.12")
+    testImplementation("org.amshove.kluent:kluent-android:1.61")
+    testImplementation("junit:junit:4.13")
     androidTestImplementation("androidx.test:runner:1.2.0")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
 }

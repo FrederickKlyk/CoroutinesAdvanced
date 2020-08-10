@@ -10,27 +10,30 @@ import de.adesso_mobile.coroutinesadvanced.io.db.movies.MovieDao
 import de.adesso_mobile.coroutinesadvanced.io.db.movies.MovieDatabase
 import de.adesso_mobile.coroutinesadvanced.io.network.movies.MovieResponse
 import de.adesso_mobile.coroutinesadvanced.io.network.movies.MovieService
+import de.adesso_mobile.coroutinesadvanced.io.network.movies.SearchItem
 import io.ktor.client.call.receive
 import timber.log.Timber
 import java.io.IOException
-
-private const val GITHUB_STARTING_PAGE_INDEX = 1
 
 @ExperimentalPagingApi
 class MovieRemoteMediator(
     private val database: MovieDatabase,
     private val movieDao: MovieDao,
-    private val movieService: MovieService
+    private val movieService: MovieService,
+    private val query: String
 ) : RemoteMediator<Int, Movie>() {
-    val query = "black"
     var page = 1
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Movie>): MediatorResult {
         Timber.d("MOVIES:::::::::: ${loadType.name}")
+        Timber.d("MOVIES query:::::::::: $query")
 
+        /** Bestimme PagingKey abhänging vom LoadType */
         val loadKey = when (loadType) {
+            // Initialier Load
             LoadType.REFRESH -> {
-                1
+                page = 1
+                page
             }
             //Wird geladen beim Start einer PagingData
             LoadType.PREPEND -> {
@@ -38,26 +41,47 @@ class MovieRemoteMediator(
             }
             // Wird geladen beim Ende einer PagingData
             LoadType.APPEND -> {
-                state.lastItemOrNull() ?: return MediatorResult.Success(endOfPaginationReached = true)
-                page + 1
+                val lastItem = state.lastItemOrNull()
+                if (lastItem == null) {
+                    Timber.d("LoadType.APPEND endOfPaginationReached = true")
+                    return MediatorResult.Success(endOfPaginationReached = true)
+                } else {
+                    Timber.d("LastItem: ${lastItem.title}")
+                }
+                page++
+                page
             }
         }
 
         try {
-            val response = movieService.fetchMovies(s = query, page = loadKey).receive<MovieResponse>().search
-            val endOfPaginationReached = response.isEmpty()
-            page += 1
+            val response: List<SearchItem>
+            if (query.isEmpty()) {
+                return MediatorResult.Success(endOfPaginationReached = true)
+            } else {
+                response = movieService.fetchMovies(s = query, page = loadKey).receive<MovieResponse>().search
 
-            database.withTransaction {
-                if (loadType == LoadType.REFRESH) {
-                    movieDao.deleteByQuery(query)
+                val endOfPaginationReached = response.isEmpty()
+
+                database.withTransaction {
+                    if (loadType == LoadType.REFRESH) {
+                        movieDao.deleteByQuery(query)
+                    }
+                    val movies = response.map {
+                        Movie(
+                            title = it.title ?: "null",
+                            type = it.type,
+                            year = it.year,
+                            imdbID = it.imdbID,
+                            poster = it.poster
+                        )
+                    }
+
+                    movieDao.insertAll(movies)
                 }
-                val movies = response.map { Movie(title = it.title ?: "null", type = it.type, year = it.year, imdbID = it.imdbID, poster = it.poster) }
 
-                movieDao.insertAll(movies)
+                Timber.d("endOfPaginationReached = $endOfPaginationReached")
+                return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
             }
-
-            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: IOException) {
             Timber.d("MOVIES FAIL:::::::::: ${e.message}")
             return MediatorResult.Error(e)

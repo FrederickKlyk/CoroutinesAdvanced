@@ -4,11 +4,53 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/movieItemTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+    <ImageView
+        android:id="@+id/movieItemImageView"
+        android:layout_width="100dp"
+        android:layout_height="148dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/movieItemTitleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@id/movieItemImageView"
+        app:layout_constraintTop_toTopOf="@id/movieItemImageView" />
+
+    <TextView
+        android:id="@+id/movieItemYearTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@id/movieItemImageView"
+        app:layout_constraintTop_toBottomOf="@id/movieItemTitleTv" />
+
+    <TextView
+        android:id="@+id/movieItemTypeTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@id/movieItemImageView"
+        app:layout_constraintTop_toBottomOf="@id/movieItemYearTv" />
+
+    <TextView
+        android:id="@+id/movieItemImdbIDTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@id/movieItemImageView"
+        app:layout_constraintTop_toBottomOf="@id/movieItemTypeTv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
 import de.adesso_mobile.coroutinesadvanced.R
 import de.adesso_mobile.coroutinesadvanced.io.db.movies.Movie
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.movie_paging_item.view.*
-import timber.log.Timber
 
 class MoviePagingAdapter() : PagingDataAdapter<Movie, MoviePagingAdapter.MovieViewHolder>(MovieDiffUtil) {
 
@@ -37,7 +37,16 @@ class MoviePagingAdapter() : PagingDataAdapter<Movie, MoviePagingAdapter.MovieVi
     inner class MovieViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         fun bind(item: Movie?) {
-            containerView.movieItemTV.text = item?.title
+            containerView.apply {
+                movieItemImageView.load(item?.poster) {
+                    crossfade(true)
+                    crossfade(300)
+                }
+                movieItemTitleTv.text = item?.title
+                movieItemYearTv.text = item?.year
+                movieItemTypeTv.text = item?.type
+                movieItemImdbIDTv.text = item?.imdbID
+            }
         }
     }
 }
