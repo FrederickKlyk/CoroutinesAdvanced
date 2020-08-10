@@ -113,6 +113,9 @@ dependencies {
     // Coil
     implementation(Dependencies.coil)
 
+    // Palette
+    implementation("com.android.support:palette-v7:28.0.0")
+
     //Result<V,E>
     implementation(Dependencies.kittinunf_result)
     implementation(Dependencies.kittinunf_result_coroutines)
