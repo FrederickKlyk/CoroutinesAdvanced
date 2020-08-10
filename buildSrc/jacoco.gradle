@@ -2,8 +2,8 @@ apply plugin: 'jacoco'
 
 task jacocoXmlReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
 
-    def fileFilter = ['de/adesso_mobile/coroutinesadvanced/domain/**/*InteractorImpl.*',
-                      'de/adesso_mobile/coroutinesadvanced/ui/**/*ViewModel.*']
+    def fileFilter = ['de/klyk/coroutinesadvanced/domain/**/*InteractorImpl.*',
+                      'de/klyk/coroutinesadvanced/ui/**/*ViewModel.*']
     def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", includes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
     def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/developmentDebug", includes: fileFilter)

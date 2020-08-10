@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.list.ListFragmentViewModel" />
+            type="de.klyk.coroutinesadvanced.ui.list.ListFragmentViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragmentViewModel" />
+            type="de.klyk.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragmentViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

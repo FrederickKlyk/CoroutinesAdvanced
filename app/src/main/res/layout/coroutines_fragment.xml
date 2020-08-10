@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel" />
+            type="de.klyk.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

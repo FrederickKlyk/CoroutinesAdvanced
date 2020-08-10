@@ -19,7 +19,7 @@ android {
     compileSdkVersion(29)
     buildToolsVersion = "29.0.3"
     defaultConfig {
-        applicationId = "de.adesso_mobile.coroutinesadvanced"
+        applicationId = "de.klyk.coroutinesadvanced"
         minSdkVersion(23)
         targetSdkVersion(29)
         versionCode = 1

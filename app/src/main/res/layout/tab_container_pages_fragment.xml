@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsPagesViewModel" />
+            type="de.klyk.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsPagesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,4 +1,4 @@
-package de.adesso_mobile.android.processors
+package de.klyk.android.processors
 
 import com.tschuchort.compiletesting.KotlinCompilation
 import org.amshove.kluent.shouldEqual

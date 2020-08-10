@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.main.coroutines.WebsocketsFragmentItemViewModel" />
+            type="de.klyk.coroutinesadvanced.ui.main.coroutines.WebsocketsFragmentItemViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

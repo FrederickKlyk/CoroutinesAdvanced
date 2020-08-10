@@ -6,7 +6,7 @@
     app:startDestination="@id/menu_coroutines">
     <fragment
         android:id="@+id/menu_coroutines"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.tabs.TabContainerFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.main.tabs.TabContainerFragment"
         android:label="TabContainerFragment"
         tools:layout="@layout/tab_container_fragment">
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/menu_overviewLibs"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragment"
         android:label="OverviewLibsFragment"
         tools:layout="@layout/overview_libs_fragment">
         <action
@@ -49,27 +49,27 @@
     </fragment>
     <fragment
         android:id="@+id/dummyFragment"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.main.DummyFragment"
         android:label="dummy_fragment"
         tools:layout="@layout/dummy_fragment"></fragment>
     <fragment
         android:id="@+id/menu_viewpager2_horizontal"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2HorizontalFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.viewpager2.Viewpager2HorizontalFragment"
         android:label="Viewpager2HorizontalFragment"
         tools:layout="@layout/viewpager2_fragment" />
     <fragment
         android:id="@+id/menu_viewpager2_vertical"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2VerticalFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.viewpager2.Viewpager2VerticalFragment"
         android:label="Viewpager2VerticalFragment"
         tools:layout="@layout/viewpager2_fragment" />
     <fragment
         android:id="@+id/menu_viewpager2_tabs"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsPagesFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.viewpager2.tabs.Viewpager2TabsPagesFragment"
         android:label="Viewpager2Tabs"
         tools:layout="@layout/tab_container_fragment" />
     <fragment
         android:id="@+id/dummyFragment2"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.main.DummyFragment2"
+        android:name="de.klyk.coroutinesadvanced.ui.main.DummyFragment2"
         android:label="dummy2_fragment"
         tools:layout="@layout/dummy2_fragment">
         <argument
@@ -79,16 +79,16 @@
     </fragment>
     <fragment
         android:id="@+id/menu_viewpager2_page_transition"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.viewpager2.Viewpager2PageTransition"
+        android:name="de.klyk.coroutinesadvanced.ui.viewpager2.Viewpager2PageTransition"
         android:label="Viewpager2PageTransition" />
     <fragment
         android:id="@+id/menu_recycler_diffutil"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.list.ListFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.list.ListFragment"
         android:label="ListFragment"
         tools:layout="@layout/list_fragment" />
     <fragment
         android:id="@+id/menu_recycler_paging"
-        android:name="de.adesso_mobile.coroutinesadvanced.ui.paging.MoviePagingFragment"
+        android:name="de.klyk.coroutinesadvanced.ui.paging.MoviePagingFragment"
         android:label="MoviePagingFragment"
         tools:layout="@layout/movie_paging_fragment" />
 </navigation>

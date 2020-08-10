@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="de.adesso_mobile.coroutinesadvanced.ui.paging.MoviePagingFragmentViewModel" />
+            type="de.klyk.coroutinesadvanced.ui.paging.MoviePagingFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
