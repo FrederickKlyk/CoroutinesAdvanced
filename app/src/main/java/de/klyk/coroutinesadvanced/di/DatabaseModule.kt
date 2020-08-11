@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 val databaseModule = module {
     single<MovieDatabase> { MovieDatabase.getInstance(context = get()) }
-    single<MovieDao> { getDb(db = get()).dataDao() }
+    single<MovieDao> { getDb(db = get()).movieDao() }
 }
 
 fun getDb(db: MovieDatabase) = db

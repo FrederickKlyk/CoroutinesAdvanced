@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.movie_paging_fragment.*
 import kotlinx.android.synthetic.main.movie_paging_fragment.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -24,6 +25,7 @@ class MoviePagingFragment : Fragment() {
 
     val viewModel: MoviePagingFragmentViewModel by inject()
     private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) { MoviePagingAdapter() }
+    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +59,8 @@ class MoviePagingFragment : Fragment() {
     @FlowPreview
     @ExperimentalPagingApi
     private fun subscribeObservers() {
-        lifecycleScope.launch {
+        searchJob?.cancel()
+        searchJob = lifecycleScope.launch {
             viewModel.movieFlow.collectLatest { pagingData ->
                 Timber.d("submitData to Adapter")
                 movieAdapter.submitData(pagingData)

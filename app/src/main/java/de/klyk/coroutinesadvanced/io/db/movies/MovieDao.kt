@@ -21,9 +21,22 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<Movie>)
 
-    @Query("SELECT * FROM movie where title  LIKE :query")
+    @Query("SELECT * FROM movie where title LIKE :query ORDER BY id ASC")
     fun getDatabasePagingSource(query: String): PagingSource<Int, Movie>
 
     @Query("DELETE FROM movie")
-    suspend fun clearAll()
+    suspend fun clearAllMovies()
+}
+
+@Dao
+interface MovieRemoteKeysDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(remoteKey: List<Movie.MovieRemoteKeys>)
+
+    @Query("SELECT * FROM movie_remote_keys WHERE movieTitle = :movieTitle")
+    fun remoteKeysByMovieTitle(movieTitle: String): Movie.MovieRemoteKeys?
+
+    @Query("DELETE FROM movie_remote_keys")
+    fun clearRemoteKeys()
 }

@@ -26,5 +26,5 @@ val viewModelModule = module {
     viewModel { FlowFragmentViewModel(weatherInteractor = get()) }
     viewModel { WebsocketsFragmentViewModel(websocketClient = get(named(DEFAULT_HTTP_CLIENT))) }
     viewModel { ListFragmentViewModel() }
-    viewModel { MoviePagingFragmentViewModel(moviePagingSource = get(), movieService = get(), movieDatabase = get(), movieDao = get() ) }
+    viewModel { MoviePagingFragmentViewModel(moviePagingSource = get(), movieService = get(), movieDatabase = get() ) }
 }

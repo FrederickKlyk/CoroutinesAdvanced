@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import de.klyk.coroutinesadvanced.io.db.movies.MovieDao
 import de.klyk.coroutinesadvanced.io.db.movies.MovieDatabase
 import de.klyk.coroutinesadvanced.io.network.movies.MovieService
@@ -20,7 +21,6 @@ import timber.log.Timber
 class MoviePagingFragmentViewModel(
     val moviePagingSource: MoviePagingSource,
     val movieDatabase: MovieDatabase,
-    val movieDao: MovieDao,
     val movieService: MovieService
 ) : BaseViewModel() {
 
@@ -28,25 +28,26 @@ class MoviePagingFragmentViewModel(
 
     init {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) { movieDao.getMovies() }
-                .apply {
-                    Timber.d("Aktuelle Moviesize: $size")
-                }
+            withContext(Dispatchers.IO) {
+                movieDatabase.movieDao().clearAllMovies()
+                movieDatabase.movieDao().getMovies()
+            }.apply {
+                Timber.d("Aktuelle Moviesize: $size")
+            }
         }
     }
 
     /** Pager Konfiguration mit einem RemoteMediator */
     @ExperimentalPagingApi
     fun moviePagerFlow(query: String) = Pager(
-        config = PagingConfig(pageSize = 20, enablePlaceholders = false, maxSize = 200),
+        config = PagingConfig(pageSize = 10, initialLoadSize = 40, enablePlaceholders = false, maxSize = 100),
         remoteMediator = MovieRemoteMediator(
             database = movieDatabase,
-            movieDao = movieDao,
             movieService = movieService,
             query = query
         )
     ) {
-        movieDao.getDatabasePagingSource("%${query}%")
+        movieDatabase.movieDao().getDatabasePagingSource("%${query}%")
     }.flow
 
     /** Sucheingabe triggerd eine neue Suche aus */
@@ -57,5 +58,5 @@ class MoviePagingFragmentViewModel(
         .asFlow()
         .debounce(300)
         .distinctUntilChanged()
-        .flatMapLatest { moviePagerFlow(it) }
+        .flatMapLatest { moviePagerFlow(it) }.cachedIn(viewModelScope)
 }
