@@ -15,7 +15,7 @@ class GetMoviesFlowRepositoryImpl(
 
     override fun getMovies(searchQuery: String): Flow<PagingData<Movie>> {
         return Pager(
-            config = PagingConfig(pageSize = 10, initialLoadSize = 20, enablePlaceholders = true, maxSize = 30),
+            config = PagingConfig(pageSize = 10, initialLoadSize = 20, enablePlaceholders = false, maxSize = 30),
             remoteMediator = movieRemoteMediator.apply { this.searchQuery(searchQuery) },
             pagingSourceFactory = { movieDatabase.movieDao().getDatabasePagingSource("%${searchQuery}%") }
         ).flow

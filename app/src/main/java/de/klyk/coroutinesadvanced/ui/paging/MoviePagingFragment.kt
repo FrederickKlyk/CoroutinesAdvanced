@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import de.klyk.coroutinesadvanced.databinding.MoviePagingFragmentBinding
 import kotlinx.android.synthetic.main.movie_paging_fragment.*
 import kotlinx.android.synthetic.main.movie_paging_fragment.view.*
@@ -52,8 +52,9 @@ class MoviePagingFragment : Fragment() {
 
     private fun initRecyclerView(view: View) {
         view.movieRecycler.apply {
-            layoutManager = GridLayoutManager(context, 2)
-            adapter = movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
+            layoutManager = LinearLayoutManager(context)
+            adapter =
+                movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
             addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         }
     }
