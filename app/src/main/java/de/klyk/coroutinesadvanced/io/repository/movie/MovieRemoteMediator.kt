@@ -1,5 +1,6 @@
 package de.klyk.coroutinesadvanced.io.repository.movie
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -12,13 +13,19 @@ import de.klyk.coroutinesadvanced.io.network.movies.MovieService
 import io.ktor.client.call.receive
 import timber.log.Timber
 import java.io.IOException
+import java.io.InvalidObjectException
 
-@ExperimentalPagingApi
+@OptIn(ExperimentalPagingApi::class)
 class MovieRemoteMediator(
     private val database: MovieDatabase,
-    private val movieService: MovieService,
-    private val query: String
-) : RemoteMediator<Int, Movie>() {
+    private val movieService: MovieService
+) : RemoteMediator<Int, Movie>(), RepoSearch {
+
+    private var query: String = ""
+
+    override fun searchQuery(query: String) {
+        this.query = query
+    }
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Movie>): MediatorResult {
         Timber.d("MOVIES:::::::::: ${loadType.name}")
@@ -34,21 +41,30 @@ class MovieRemoteMediator(
             }
             //Wird geladen beim Start einer PagingData
             LoadType.PREPEND -> {
+                val firstMovie = state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.title
+                Timber.d("PREPEND first movie: $firstMovie")
                 val remoteKeys = getRemoteKeyForFirstItem(state)
+                    ?: return MediatorResult.Error(InvalidObjectException("Kein Previouskey für $firstMovie vorhanden."))
 
-                remoteKeys?.prevKey ?: INVALID_PAGE
+                val prevKey = remoteKeys.prevKey ?: return MediatorResult.Success(endOfPaginationReached = true)
+                Timber.d("PREPEND: PreviousKey: $prevKey")
+
+                prevKey
             }
             // Wird geladen beim Ende einer PagingData
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(state)
+                    ?: return MediatorResult.Error(InvalidObjectException("Kein NextKey vorhanden."))
 
-                remoteKeys?.nextKey ?: INVALID_PAGE
+                val nextKey = remoteKeys.nextKey ?: return MediatorResult.Success(endOfPaginationReached = true)
+
+                nextKey
             }
         }
         Timber.d("RemoteKey ist aktuell: $page")
         try {
-            if (query.isEmpty() || page == INVALID_PAGE) {
-                Timber.d("Query ist empty, oder $page == $INVALID_PAGE")
+            if (query.isEmpty()) {
+                Timber.d("Query ist empty")
                 return MediatorResult.Success(endOfPaginationReached = true)
             } else {
                 val response = movieService.fetchMovies(s = query, page = page).receive<MovieResponse>()
@@ -65,8 +81,10 @@ class MovieRemoteMediator(
                     val prevKey = if (page == 1) null else page - 1
                     val nextKey = if (endOfPaginationReached) null else page + 1
                     val keys = movies.map {
-                        Movie.MovieRemoteKeys(movieTitle = it.title, prevKey = prevKey, nextKey = nextKey)
+                        Movie.MovieRemoteKeys(imdbID = it.imdbID, prevKey = prevKey, nextKey = nextKey)
                     }
+                    Log.d("prepend", "$keys")
+
 
                     database.movieRemoteKeysDao().insertAll(keys)
                     database.movieDao().insertAll(movies)
@@ -82,25 +100,21 @@ class MovieRemoteMediator(
     }
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, Movie>): Movie.MovieRemoteKeys? {
-        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { movie ->
-            database.withTransaction {
-                database.movieRemoteKeysDao().remoteKeysByMovieTitle(movie.title)
-            }
+        return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { repo ->
+            database.movieRemoteKeysDao().remoteKeysByMovieTitle(repo.imdbID)
         }
     }
 
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, Movie>): Movie.MovieRemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { movie ->
-            database.withTransaction {
-                database.movieRemoteKeysDao().remoteKeysByMovieTitle(movie.title)
-            }
+            database.movieRemoteKeysDao().remoteKeysByMovieTitle(movie.imdbID)
         }
     }
 
-    private fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, Movie>): Movie.MovieRemoteKeys? {
+    private suspend fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, Movie>): Movie.MovieRemoteKeys? {
         return state.anchorPosition?.let { position ->
-            state.closestItemToPosition(position)?.title?.let { title ->
-                database.movieRemoteKeysDao().remoteKeysByMovieTitle(title)
+            state.closestItemToPosition(position)?.imdbID?.let { imdbID ->
+                database.movieRemoteKeysDao().remoteKeysByMovieTitle(imdbID)
             }
         }
     }
@@ -108,10 +122,11 @@ class MovieRemoteMediator(
     private fun MovieResponse.transformToMovies(): List<Movie> {
         return this.search.map {
             Movie(
+                id = 0,
                 title = it.title ?: "null",
                 type = it.type,
                 year = it.year,
-                imdbID = it.imdbID,
+                imdbID = it.imdbID ?: "null",
                 poster = it.poster
             )
         }
@@ -119,6 +134,5 @@ class MovieRemoteMediator(
 
     companion object {
         const val FIRST_PAGE = 1
-        const val INVALID_PAGE = -1
     }
 }

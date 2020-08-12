@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import de.klyk.coroutinesadvanced.databinding.MoviePagingFragmentBinding
 import kotlinx.android.synthetic.main.movie_paging_fragment.*
@@ -24,17 +25,20 @@ import timber.log.Timber
 class MoviePagingFragment : Fragment() {
 
     val viewModel: MoviePagingFragmentViewModel by inject()
-    private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) { MoviePagingAdapter() }
+    private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) { MoviePagingAdapter(this) }
     private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return MoviePagingFragmentBinding.inflate(inflater).apply {
+        val view = MoviePagingFragmentBinding.inflate(inflater).apply {
             lifecycleOwner = this@MoviePagingFragment
             viewModel = this@MoviePagingFragment.viewModel
         }.root
+        initRecyclerView(view)
+
+        return view
     }
 
     @FlowPreview
@@ -43,15 +47,14 @@ class MoviePagingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecyclerView(view)
-
         subscribeObservers()
     }
 
     private fun initRecyclerView(view: View) {
         view.movieRecycler.apply {
             layoutManager = GridLayoutManager(context, 2)
-            adapter = movieAdapter
+            adapter = movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
+            addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         }
     }
 
@@ -67,21 +70,20 @@ class MoviePagingFragment : Fragment() {
             }
         }
 
+        // LoadingStates zum allgemeinen verarbeiten in der UI
         movieAdapter.addLoadStateListener { loadState ->
             if (loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading)
                 showProgressBar(true)
             else {
                 showProgressBar(false)
 
-                // If we have an error, show a toast
-                val errorState = when {
-                    loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                    loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                    loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                    else -> null
-                }
+                // Fehler anzeigen per Toast
+                val errorState = loadState.append as? LoadState.Error
+                    ?: loadState.prepend as? LoadState.Error
+                    ?: loadState.refresh as? LoadState.Error
+
                 errorState?.let {
-                    Toast.makeText(activity, it.error.toString(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(activity, it.error.localizedMessage, Toast.LENGTH_LONG).show()
                 }
             }
         }

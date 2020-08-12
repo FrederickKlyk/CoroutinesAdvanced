@@ -10,13 +10,13 @@ import androidx.room.Query
 interface MovieDao {
 
     @Query("DELETE from movie where title LIKE :query")
-    fun deleteByQuery(query: String)
+    suspend fun deleteByQuery(query: String)
 
     @Query("Select * from movie")
     fun getMovies(): List<Movie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovie(movie: Movie)
+    suspend fun insertMovie(movie: Movie)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(users: List<Movie>)
@@ -32,11 +32,11 @@ interface MovieDao {
 interface MovieRemoteKeysDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(remoteKey: List<Movie.MovieRemoteKeys>)
+    suspend fun insertAll(remoteKey: List<Movie.MovieRemoteKeys>)
 
-    @Query("SELECT * FROM movie_remote_keys WHERE movieTitle = :movieTitle")
-    fun remoteKeysByMovieTitle(movieTitle: String): Movie.MovieRemoteKeys?
+    @Query("SELECT * FROM movie_remote_keys WHERE imdbID = :imdbID")
+    suspend fun remoteKeysByMovieTitle(imdbID: String): Movie.MovieRemoteKeys?
 
     @Query("DELETE FROM movie_remote_keys")
-    fun clearRemoteKeys()
+    suspend fun clearRemoteKeys()
 }

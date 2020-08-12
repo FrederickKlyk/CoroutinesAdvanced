@@ -19,14 +19,14 @@ data class Movie (
     val year: String?,
 
     @field:SerializedName("imdbID")
-    val imdbID: String?,
+    val imdbID: String = "",
 
     @field:SerializedName("Poster")
     val poster: String?
 ){
     @Entity(tableName = "movie_remote_keys")
     data class MovieRemoteKeys(
-        @PrimaryKey val movieTitle: String,
+        @PrimaryKey val imdbID: String,
         val prevKey: Int?,
         val nextKey: Int?
     )

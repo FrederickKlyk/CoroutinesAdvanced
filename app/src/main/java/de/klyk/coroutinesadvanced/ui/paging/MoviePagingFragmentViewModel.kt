@@ -7,9 +7,9 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import de.klyk.coroutinesadvanced.io.db.movies.MovieDao
 import de.klyk.coroutinesadvanced.io.db.movies.MovieDatabase
 import de.klyk.coroutinesadvanced.io.network.movies.MovieService
+import de.klyk.coroutinesadvanced.io.repository.movie.GetMoviesFlowRepository
 import de.klyk.coroutinesadvanced.io.repository.movie.MovieRemoteMediator
 import de.klyk.coroutinesadvanced.ui.base.BaseViewModel
 import kotlinx.coroutines.*
@@ -19,9 +19,8 @@ import kotlinx.coroutines.flow.flatMapLatest
 import timber.log.Timber
 
 class MoviePagingFragmentViewModel(
-    val moviePagingSource: MoviePagingSource,
     val movieDatabase: MovieDatabase,
-    val movieService: MovieService
+    val getMoviesFlowRepository: GetMoviesFlowRepository
 ) : BaseViewModel() {
 
     val searchQuery = MutableLiveData("")
@@ -37,19 +36,6 @@ class MoviePagingFragmentViewModel(
         }
     }
 
-    /** Pager Konfiguration mit einem RemoteMediator */
-    @ExperimentalPagingApi
-    fun moviePagerFlow(query: String) = Pager(
-        config = PagingConfig(pageSize = 10, initialLoadSize = 40, enablePlaceholders = false, maxSize = 100),
-        remoteMediator = MovieRemoteMediator(
-            database = movieDatabase,
-            movieService = movieService,
-            query = query
-        )
-    ) {
-        movieDatabase.movieDao().getDatabasePagingSource("%${query}%")
-    }.flow
-
     /** Sucheingabe triggerd eine neue Suche aus */
     @FlowPreview
     @ExperimentalCoroutinesApi
@@ -58,5 +44,5 @@ class MoviePagingFragmentViewModel(
         .asFlow()
         .debounce(300)
         .distinctUntilChanged()
-        .flatMapLatest { moviePagerFlow(it) }.cachedIn(viewModelScope)
+        .flatMapLatest { getMoviesFlowRepository.getMovies(it) }.cachedIn(viewModelScope)
 }
