@@ -22,9 +22,9 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class MoviePagingFragment : Fragment() {
+class MoviePagingRemoteFragment : Fragment() {
 
-    val viewModel: MoviePagingFragmentViewModel by inject()
+    val viewModelRemote: MoviePagingRemoteFragmentViewModel by inject()
     private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) { MoviePagingAdapter(this) }
     private var searchJob: Job? = null
 
@@ -33,8 +33,8 @@ class MoviePagingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = MoviePagingFragmentBinding.inflate(inflater).apply {
-            lifecycleOwner = this@MoviePagingFragment
-            viewModel = this@MoviePagingFragment.viewModel
+            lifecycleOwner = this@MoviePagingRemoteFragment
+            viewModel = this@MoviePagingRemoteFragment.viewModelRemote
         }.root
         initRecyclerView(view)
 
@@ -64,7 +64,7 @@ class MoviePagingFragment : Fragment() {
     private fun subscribeObservers() {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
-            viewModel.movieFlow.collectLatest { pagingData ->
+            viewModelRemote.movieFlow.collectLatest { pagingData ->
                 Timber.d("submitData to Adapter")
                 movieAdapter.submitData(pagingData)
             }

@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="de.klyk.coroutinesadvanced.ui.paging.MoviePagingFragmentViewModel" />
+            type="de.klyk.coroutinesadvanced.ui.paging.remotemediator.MoviePagingRemoteFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/movieRecycler"
+            android:id="@+id/movieRecyclerRemote"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"

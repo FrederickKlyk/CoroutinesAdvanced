@@ -15,7 +15,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import timber.log.Timber
 
-class MoviePagingFragmentViewModel(
+class MoviePagingRemoteFragmentViewModel(
     val movieDatabase: MovieDatabase,
     val getMoviesFlowRepository: GetMoviesFlowRepository
 ) : BaseViewModel() {
@@ -53,9 +53,6 @@ class MoviePagingFragmentViewModel(
                     // we're at the end of the list
                     return@insertSeparators MovieModel.SeperatorItem("Ende der Liste")
                 }
-
-                Timber.d("Before: ${before?.movie?.title}, After: ${after.movie.title}")
-
                 val alphabet = after.movie.title.replace("The", "").trim().take(1)
 
                 if (before == null) {

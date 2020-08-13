@@ -1,4 +1,4 @@
-package de.klyk.coroutinesadvanced.ui.paging
+package de.klyk.coroutinesadvanced.ui.paging.remotemediator
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,7 +15,9 @@ class MovieLoadStateAdapter(
 ) : LoadStateAdapter<MovieLoadingStateViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): MovieLoadingStateViewHolder {
-        return MovieLoadingStateViewHolder.create(parent)
+        return MovieLoadingStateViewHolder.create(
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: MovieLoadingStateViewHolder, loadState: LoadState) {
@@ -47,7 +49,9 @@ class MovieLoadingStateViewHolder(private val binding: MoviePagingLoadStateBindi
 
             val binding = MoviePagingLoadStateBinding.bind(view)
 
-            return MovieLoadingStateViewHolder(binding)
+            return MovieLoadingStateViewHolder(
+                binding
+            )
         }
     }
 }

@@ -28,8 +28,7 @@ class MovieRemoteMediator(
     }
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Movie>): MediatorResult {
-        Timber.d("MOVIES:::::::::: ${loadType.name}")
-        Timber.d("MOVIES query:::::::::: $query")
+        Timber.d("MOVIE LoadType: ${loadType.name}, ${state.anchorPosition}")
 
         /** Bestimme PagingKey abhänging vom LoadType */
         val page = when (loadType) {
@@ -83,8 +82,6 @@ class MovieRemoteMediator(
                     val keys = movies.map {
                         Movie.MovieRemoteKeys(imdbID = it.imdbID, prevKey = prevKey, nextKey = nextKey)
                     }
-                    Log.d("prepend", "$keys")
-
 
                     database.movieRemoteKeysDao().insertAll(keys)
                     database.movieDao().insertAll(movies)

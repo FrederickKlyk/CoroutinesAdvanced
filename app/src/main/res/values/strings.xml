@@ -15,5 +15,6 @@
     <string name="viewpager_2_pages_ueber_recyclerview">ViewPager 2 (Recyclerview)</string>
     <string name="recyclerview_mit_diffutil">RecyclerView mit DiffUtil</string>
     <string name="recyclerview_listadapter_diffutil">RecyclerView ListAdapter (DiffUtil)</string>
-    <string name="paging3">Paging3</string>
+    <string name="paging3pagesource">Paging 3 (PageSource)</string>
+    <string name="paging3remote">Paging 3 (RemoteMediator)</string>
 </resources>

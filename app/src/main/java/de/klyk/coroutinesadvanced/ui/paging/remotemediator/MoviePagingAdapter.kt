@@ -1,4 +1,4 @@
-package de.klyk.coroutinesadvanced.ui.paging
+package de.klyk.coroutinesadvanced.ui.paging.remotemediator
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,10 +13,16 @@ import de.klyk.coroutinesadvanced.databinding.MoviePagingSeperatorItemBinding
 import de.klyk.coroutinesadvanced.io.db.movies.Movie
 import de.klyk.coroutinesadvanced.io.db.movies.MovieModel
 
-class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDataAdapter<MovieModel, RecyclerView.ViewHolder>(MovieDiffUtil) {
+class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDataAdapter<MovieModel, RecyclerView.ViewHolder>(
+    MovieDiffUtil
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if(viewType == R.layout.movie_paging_item) MovieViewHolder.create(parent) else SeparatorViewHolder.create(parent)
+        return if(viewType == R.layout.movie_paging_item) MovieViewHolder.create(
+            parent
+        ) else SeparatorViewHolder.create(
+            parent
+        )
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -80,7 +86,9 @@ class MovieViewHolder(val binding: MoviePagingItemBinding) : RecyclerView.ViewHo
 
             val binding = MoviePagingItemBinding.bind(view)
 
-            return MovieViewHolder(binding)
+            return MovieViewHolder(
+                binding
+            )
         }
     }
 }

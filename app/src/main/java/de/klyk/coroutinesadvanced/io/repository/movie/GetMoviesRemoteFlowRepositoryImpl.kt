@@ -7,8 +7,7 @@ import de.klyk.coroutinesadvanced.io.db.movies.Movie
 import de.klyk.coroutinesadvanced.io.db.movies.MovieDatabase
 import kotlinx.coroutines.flow.Flow
 
-
-class GetMoviesFlowRepositoryImpl(
+class GetMoviesRemoteFlowRepositoryImpl(
     val movieDatabase: MovieDatabase,
     val movieRemoteMediator: MovieRemoteMediator
 ) : GetMoviesFlowRepository {
