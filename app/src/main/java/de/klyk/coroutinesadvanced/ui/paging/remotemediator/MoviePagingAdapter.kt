@@ -21,8 +21,9 @@ class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDat
 
     override fun getItemViewType(position: Int): Int {
         return when (getItem(position)){
+            is MovieModel.MovieItem -> R.layout.movie_paging_item
             is MovieModel.SeperatorItem -> R.layout.movie_paging_seperator_item
-            else -> R.layout.movie_paging_item
+            else -> R.layout.movie_paging_seperator_item
         }
     }
 

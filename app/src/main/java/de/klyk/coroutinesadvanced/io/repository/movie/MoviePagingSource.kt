@@ -1,4 +1,4 @@
-package de.klyk.coroutinesadvanced.ui.paging
+package de.klyk.coroutinesadvanced.ui.paging.pagingsource
 
 import androidx.paging.PagingSource
 import de.klyk.coroutinesadvanced.io.network.movies.MovieResponse

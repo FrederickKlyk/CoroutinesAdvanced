@@ -1,4 +1,4 @@
-package de.klyk.coroutinesadvanced.ui.paging
+package de.klyk.coroutinesadvanced.ui.paging.remotemediator
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -51,10 +51,9 @@ class MoviePagingFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
-        view.movieRecycler.apply {
+        view.movieRecyclerRemote.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter =
-                movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
+            adapter = movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
             addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         }
     }
