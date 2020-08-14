@@ -15,5 +15,5 @@ val domainModule = module {
     single<LokalServerInteractor> { LokalServerInteractorImpl(lokalServerService = get()) }
     single<WeatherInteractor> { WeatherInteractorImpl(weatherService = get()) }
     single{ MoviePagingSource(movieService = get()) }
-    single<GetMoviesFlowRepository>(named("source")) { GetMoviesSourceFlowRepositoryImpl(moviePagingSource = get()) }
+    single<GetMoviesFlowRepository>(named("source")) { GetMoviesSourceFlowRepositoryImpl(moviePagingSource = get(), database = get()) }
 }

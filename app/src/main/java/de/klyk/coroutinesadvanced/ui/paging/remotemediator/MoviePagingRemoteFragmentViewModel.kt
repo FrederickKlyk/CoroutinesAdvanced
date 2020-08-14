@@ -12,7 +12,10 @@ import de.klyk.coroutinesadvanced.io.db.movies.MovieModel
 import de.klyk.coroutinesadvanced.io.repository.movie.GetMoviesFlowRepository
 import de.klyk.coroutinesadvanced.ui.base.BaseViewModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import timber.log.Timber
 
 class MoviePagingRemoteFragmentViewModel(
@@ -33,7 +36,7 @@ class MoviePagingRemoteFragmentViewModel(
         }
     }
 
-    fun resetSerachQuery(){
+    fun resetSerachQuery() {
         searchQuery.value = ""
     }
 
@@ -49,21 +52,11 @@ class MoviePagingRemoteFragmentViewModel(
         .map { pagingData -> pagingData.map { MovieModel.MovieItem(it) } }
         .map {
             it.insertSeparators<MovieModel.MovieItem, MovieModel> { before, after ->
-                if (after == null) {
-                    // we're at the end of the list
-                    return@insertSeparators MovieModel.SeperatorItem("Ende der Liste")
-                }
-                val alphabet = after.movie.title.replace("The", "").trim().take(1)
-
-                if (before == null) {
-                    // we're at the beginning of the list
-                    return@insertSeparators MovieModel.SeperatorItem(alphabet)
-                }
-
-                if (before.movie.title.replace("The", "").trim().take(1) != alphabet) {
-                    MovieModel.SeperatorItem(alphabet)
-                } else {
-                    null
+                when {
+                    before == null -> return@insertSeparators MovieModel.SeperatorItem("1")
+                    after == null -> return@insertSeparators MovieModel.SeperatorItem("Ende der Liste")
+                    before.movie.page < after.movie.page -> MovieModel.SeperatorItem(after.movie.page.toString())
+                    else -> null
                 }
             }
         }.cachedIn(viewModelScope)

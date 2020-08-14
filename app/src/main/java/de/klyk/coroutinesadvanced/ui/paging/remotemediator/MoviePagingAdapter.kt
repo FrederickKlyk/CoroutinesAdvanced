@@ -29,7 +29,7 @@ class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDat
         return when (getItem(position)){
             is MovieModel.MovieItem -> R.layout.movie_paging_item
             is MovieModel.SeperatorItem -> R.layout.movie_paging_seperator_item
-            else -> R.layout.movie_paging_seperator_item
+            else -> throw UnsupportedOperationException("Unknown View")
         }
     }
 
@@ -45,7 +45,7 @@ class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDat
                 is MovieModel.SeperatorItem -> {
                     (holder as SeparatorViewHolder).apply {
                         binding.lifecycleOwner = lifecycleOwner
-                        bind(it.descirption)
+                        bind(it.description)
                     }
                 }
             }
@@ -56,7 +56,7 @@ class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDat
         override fun areItemsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
             // Id is unique.
             return (oldItem is MovieModel.MovieItem && newItem is MovieModel.MovieItem && oldItem.movie.imdbID == newItem.movie.imdbID) ||
-                    (oldItem is MovieModel.SeperatorItem && newItem is MovieModel.SeperatorItem && oldItem.descirption == newItem.descirption)
+                    (oldItem is MovieModel.SeperatorItem && newItem is MovieModel.SeperatorItem && oldItem.description == newItem.description)
         }
 
         override fun areContentsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {

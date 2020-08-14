@@ -22,7 +22,10 @@ data class Movie (
     val imdbID: String = "",
 
     @field:SerializedName("Poster")
-    val poster: String?
+    val poster: String?,
+
+    @field:SerializedName("page")
+    val page: Int = 0
 ){
     @Entity(tableName = "movie_remote_keys")
     data class MovieRemoteKeys(
