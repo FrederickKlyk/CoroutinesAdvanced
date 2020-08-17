@@ -18,15 +18,12 @@ class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDat
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if(viewType == R.layout.movie_paging_item) MovieViewHolder.create(
-            parent
-        ) else SeparatorViewHolder.create(
-            parent
-        )
+        return if (viewType == R.layout.movie_paging_item) MovieViewHolder.create(parent)
+        else SeparatorViewHolder.create(parent)
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (getItem(position)){
+        return when (getItem(position)) {
             is MovieModel.MovieItem -> R.layout.movie_paging_item
             is MovieModel.SeperatorItem -> R.layout.movie_paging_seperator_item
             else -> throw UnsupportedOperationException("Unknown View")
@@ -35,7 +32,7 @@ class MoviePagingAdapter(private val lifecycleOwner: LifecycleOwner) : PagingDat
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         getItem(position)?.let {
-            when(it){
+            when (it) {
                 is MovieModel.MovieItem -> {
                     (holder as MovieViewHolder).apply {
                         binding.lifecycleOwner = lifecycleOwner
@@ -101,7 +98,7 @@ class SeparatorViewHolder(val binding: MoviePagingSeperatorItemBinding) : Recycl
     companion object {
         fun create(parent: ViewGroup): SeparatorViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.movie_paging_seperator_item,  parent,false)
+                .inflate(R.layout.movie_paging_seperator_item, parent, false)
 
             val binding = MoviePagingSeperatorItemBinding.bind(view)
 

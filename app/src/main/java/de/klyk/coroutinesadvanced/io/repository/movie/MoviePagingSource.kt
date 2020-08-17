@@ -21,7 +21,6 @@ class MoviePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         Timber.d("Starte Netzwerkcall")
-
         return try {
             val nextPage = params.key ?: 1
             val response = movieService.fetchMovies(s = query, page = nextPage).receive<MovieResponse>()
@@ -33,7 +32,7 @@ class MoviePagingSource(
                 nextKey = nextPage + 1
             )
         } catch (e: Exception) {
-            Timber.d("Netzwerkcall fehlgeschlagen")
+            Timber.e("Netzwerkcall fehlgeschlagen")
             LoadResult.Error(e)
         }
     }

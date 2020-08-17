@@ -17,10 +17,9 @@ class GetMoviesSourceFlowRepositoryImpl(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = true,
-                prefetchDistance = 5,
                 initialLoadSize = 40
             ),
-            //pagingSourceFactory = { database.movieDao().getDatabasePagingSource("%${searchQuery}%") }
+            //pagingSourceFactory = { database.movieDao().getDatabasePagingSource("%${searchQuery}%") } // DB Room Anfrage
             pagingSourceFactory = { moviePagingSource.apply { this.searchQuery(searchQuery) } }
         ).flow
     }

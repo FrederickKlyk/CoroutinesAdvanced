@@ -1,4 +1,4 @@
-package de.klyk.coroutinesadvanced.ui.paging.remotemediator
+package de.klyk.coroutinesadvanced.ui.paging
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

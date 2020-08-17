@@ -29,9 +29,6 @@ class MoviePagingRemoteFragmentViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 movieDatabase.movieDao().clearAllMovies()
-                movieDatabase.movieDao().getMovies()
-            }.apply {
-                Timber.d("Aktuelle Moviesize: $size")
             }
         }
     }

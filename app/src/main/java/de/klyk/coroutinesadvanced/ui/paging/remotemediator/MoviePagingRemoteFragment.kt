@@ -12,6 +12,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.klyk.coroutinesadvanced.databinding.MoviePagingFragmentBinding
+import de.klyk.coroutinesadvanced.ui.paging.MovieLoadStateAdapter
 import kotlinx.android.synthetic.main.movie_paging_fragment.*
 import kotlinx.android.synthetic.main.movie_paging_fragment.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
