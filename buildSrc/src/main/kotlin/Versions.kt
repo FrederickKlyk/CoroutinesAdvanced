@@ -1,10 +1,10 @@
 object Versions {
-    const val gradle = "4.0.1"
-    const val kotlin = "1.3.70"
+    const val gradle = "4.0.2"
+    const val kotlin = "1.4.21"
     const val timber = "4.7.1"
     const val lifecycle = "2.2.0"
     const val lifecycle_test = "2.1.0"
-    const val coroutines = "1.3.8"
+    const val coroutines = "1.4.2"
     const val koin = "2.0.1"
     const val viewpager2 = "1.0.0"
     const val material = "1.2.0-alpha04"

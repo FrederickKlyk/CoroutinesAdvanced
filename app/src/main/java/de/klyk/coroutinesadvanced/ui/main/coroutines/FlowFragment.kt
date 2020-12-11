@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import de.klyk.coroutinesadvanced.databinding.FlowFragmentBinding
+import de.klyk.coroutinesadvanced.ui.base.BaseFragment
 import org.koin.android.ext.android.inject
 
-class FlowFragment : Fragment() {
+class FlowFragment : BaseFragment() {
     private val viewModel: FlowFragmentViewModel by inject()
 
     override fun onCreateView(

@@ -59,8 +59,8 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
     implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.core:core-ktx:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation(Dependencies.fragment)
 
@@ -114,7 +114,7 @@ dependencies {
     implementation(Dependencies.coil)
 
     // Palette
-    implementation("com.android.support:palette-v7:28.0.0")
+    implementation("androidx.palette:palette-ktx:1.0.0")
 
     //Result<V,E>
     implementation(Dependencies.kittinunf_result)

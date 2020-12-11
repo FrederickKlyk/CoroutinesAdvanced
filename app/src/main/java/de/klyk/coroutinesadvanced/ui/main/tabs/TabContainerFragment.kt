@@ -12,6 +12,7 @@ import de.klyk.coroutinesadvanced.ui.base.viewpager2.FragmentStateViewPagerAdapt
 import de.klyk.coroutinesadvanced.ui.main.coroutines.CoroutinesFragment
 import de.klyk.coroutinesadvanced.ui.main.coroutines.FlowFragment
 import de.klyk.coroutinesadvanced.ui.main.DummyFragment
+import de.klyk.coroutinesadvanced.ui.main.coroutines.StateSharedFlowFragment
 import de.klyk.coroutinesadvanced.ui.main.coroutines.WebsocketsFragment
 import kotlinx.android.synthetic.main.tab_container_fragment.*
 import org.koin.android.ext.android.inject
@@ -46,6 +47,7 @@ class TabContainerFragment : Fragment() {
         tabAdapter.addFragment(DummyFragment(), "Channel")
         tabAdapter.addFragment(FlowFragment.newInstance(), "Flow")
         tabAdapter.addFragment(WebsocketsFragment.newInstance(), "Websockets")
+        tabAdapter.addFragment(StateSharedFlowFragment.newInstance(), "State-/SharedFlow")
 
         //ViewPager Adapter erhält TabAdapter mit den Fragmenten, die innerhalb des TabAdapter hinzugefügt worden sind
         viewPagerForTabs.adapter = tabAdapter
