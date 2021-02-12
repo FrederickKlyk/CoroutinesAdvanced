@@ -17,4 +17,6 @@
     <string name="recyclerview_listadapter_diffutil">RecyclerView ListAdapter (DiffUtil)</string>
     <string name="paging3pagesource">Paging 3 (PageSource)</string>
     <string name="paging3remote">Paging 3 (RemoteMediator)</string>
+    <string name="add_friend_hint">Freund hinzufügen</string>
+    <string name="load_friends_button">Freunde laden</string>
 </resources>
