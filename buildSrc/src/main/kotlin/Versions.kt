@@ -11,7 +11,7 @@ object Versions {
     const val mockito_kotlin = "2.2.0"
     const val mockito_kotlin_inline = "3.2.4"
     const val fragment_version = "1.3.0"
-    const val nav_version = "2.2.0"
+    const val nav_version = "2.3.5"
     const val ktor_client_android = "1.3.1"
     const val ktor_client_json = "1.3.1"
     const val okHttp_logging = "4.2.1"
