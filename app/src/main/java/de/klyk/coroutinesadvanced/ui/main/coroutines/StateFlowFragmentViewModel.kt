@@ -8,29 +8,42 @@ import kotlinx.coroutines.launch
 
 class StateFlowFragmentViewModel : BaseViewModel() {
 
+    private val _initLabelValue = MutableStateFlow("")
+    val initLabelValue: StateFlow<String> = _initLabelValue
+
     private val _names = MutableStateFlow<String?>(null)
     val names: StateFlow<String?> = _names
-    val newName = MutableStateFlow<String?>(null)
 
+    val newName = MutableStateFlow<String?>("")
+    val repoFriends = mutableListOf("Fred", "Pit", "Kurt")
+
+    init {
+        _initLabelValue.value = "Test von One- und Two-Way-Bindings"
+    }
 
     fun loadMyFriends() {
         viewModelScope.launch {
             try {
-                repoLoadFriends()
+                repoLoadFriends() // Will be executed in IO
                     .combine(newName) { namesFromRepo, addedName ->
-                        if (addedName.isNullOrEmpty()) namesFromRepo else "$namesFromRepo, $addedName"
-                    }
+                        if (addedName.isNullOrEmpty()) "$namesFromRepo, ohne neuen Freund" else "$namesFromRepo, $addedName"
+                    } // Will be executed in IO
                     .flowOn(Dispatchers.IO)
                     .collect {
                         _names.value = it
-                    }
+                    }// Will be executed in the Main
             } catch (ex: Exception) {
                 _names.value = "repo is not available"
             }
         }
     }
 
+    fun addRepoFriend(friend:String){
+        repoFriends.add(friend)
+    }
+
+    //Mock async Repo, which should be called from I/O-Thread
     private fun repoLoadFriends(): Flow<String> = flow {
-        emit(listOf("Fred", "Pit", "Kurt").joinToString())
+        emit(repoFriends.joinToString())
     }
 }

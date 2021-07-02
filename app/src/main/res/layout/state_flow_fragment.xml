@@ -14,47 +14,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Available with AS 4.3
-<TextView
-    android:id="@+id/textview_first"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@{viewModel.names}"
-    android:visibility="@{viewModel.names != null ? View.VISIBLE : View.GONE, default = gone}"
-    app:layout_constraintBottom_toTopOf="@id/button_first"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    tools:text="Names go here"
-    tools:visibility="visible" />
+        <TextView
+            android:id="@+id/stateFlowLabelTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@{viewModel.initLabelValue}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Label Text" />
 
-<com.google.android.material.textfield.TextInputLayout
-  android:layout_width="0dp"
-  android:layout_height="wrap_content"
-  android:layout_marginBottom="94dp"
-  android:hint="@string/add_friend_hint"
-  app:layout_constraintBottom_toTopOf="@+id/button_first"
-  app:layout_constraintEnd_toEndOf="@+id/button_first"
-  app:layout_constraintStart_toStartOf="@+id/button_first">
+        <TextView
+            android:id="@+id/showNamesTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.names}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/stateFlowLabelTV"
+            tools:text="Names go here"
+            tools:visibility="visible" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputNewNameTIL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="94dp"
+            android:hint="@string/add_friend_hint"
+            app:layout_constraintEnd_toEndOf="@+id/button_first"
+            app:layout_constraintStart_toStartOf="@+id/button_first"
+            app:layout_constraintTop_toBottomOf="@id/showNamesTV">
 
-  <com.google.android.material.textfield.TextInputEditText
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:text="@={viewModel.newName}" />
-</com.google.android.material.textfield.TextInputLayout>
-
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@={viewModel.newName}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{v -> viewModel.loadMyFriends()}"
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.loadMyFriends()}"
             android:text="@string/load_friends_button"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_first" />
-            -->
+            app:layout_constraintTop_toBottomOf="@id/inputNewNameTIL" />
+
+
+        <Button
+            android:id="@+id/button_initListener"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/init_setfragmentresultlistener"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_first" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

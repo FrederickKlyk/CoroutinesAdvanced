@@ -10,66 +10,86 @@
             type="de.klyk.coroutinesadvanced.ui.main.coroutines.CoroutinesFragmentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coroutinesCoordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.main.coroutines.CoroutinesFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/first_TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/tab_coroutines_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/wetter_Button"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/lade_wetterdaten_button"
-            android:onClick="@{() -> viewModel.initialize()}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/first_TV" />
+            android:layout_height="match_parent"
+            tools:context=".ui.main.coroutines.CoroutinesFragment">
 
-        <TextView
-            android:id="@+id/wetter_Daten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.wetterDatenText}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wetter_Button"/>
+            <TextView
+                android:id="@+id/first_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/tab_coroutines_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:layout_marginTop="32dp"
-            android:hint="Post Data Value"
-            android:id="@+id/postData_ET"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wetter_Daten"
-            android:text="@={viewModel.postDataText}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/wetter_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:onClick="@{() -> viewModel.initialize()}"
+                android:text="@string/lade_wetterdaten_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/first_TV" />
 
-        <Button
-            android:id="@+id/postData_Button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/post_button"
-            android:onClick="@{() -> viewModel.sendHTTPPost()}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/postData_ET" />
+            <TextView
+                android:id="@+id/wetter_Daten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.wetterDatenText}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wetter_Button" />
 
-        <TextView
-            android:id="@+id/postData_Daten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.postDataResponseText}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/postData_Button"/>
+            <EditText
+                android:id="@+id/postData_ET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="Post Data Value"
+                android:text="@={viewModel.postDataText}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wetter_Daten" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/postData_Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:onClick="@{() -> viewModel.sendHTTPPost()}"
+                android:text="@string/post_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postData_ET" />
+
+            <TextView
+                android:id="@+id/postData_Daten"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.postDataResponseText}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/postData_Button" />
+
+            <EditText
+                android:id="@+id/coroutinesToStateFlowET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name vom Freund"
+                app:layout_constraintTop_toBottomOf="@id/postData_Daten" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/coroutinesToStateFlowButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sende Daten zum Stateflow Fagment"
+                app:layout_constraintTop_toBottomOf="@id/coroutinesToStateFlowET" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

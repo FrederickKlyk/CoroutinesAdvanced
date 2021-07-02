@@ -19,4 +19,5 @@
     <string name="paging3remote">Paging 3 (RemoteMediator)</string>
     <string name="add_friend_hint">Freund hinzufügen</string>
     <string name="load_friends_button">Freunde laden</string>
+    <string name="init_setfragmentresultlistener">init setFragmentResultListener</string>
 </resources>
