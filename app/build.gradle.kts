@@ -17,7 +17,7 @@ jacoco {
 
 android {
     compileSdkVersion(30)
-    buildToolsVersion = "29.0.3"
+    buildToolsVersion = "30.0.3"
     defaultConfig {
         applicationId = "de.klyk.coroutinesadvanced"
         minSdkVersion(23)
@@ -38,12 +38,12 @@ android {
     }
 
     dataBinding {
-        isEnabled = true
+        android.buildFeatures.dataBinding = true
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     packagingOptions {
         pickFirst("META-INF/kotlinx-coroutines-core.kotlin_module")
@@ -56,6 +56,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":dummy"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
     implementation("androidx.appcompat:appcompat:1.3.0")
