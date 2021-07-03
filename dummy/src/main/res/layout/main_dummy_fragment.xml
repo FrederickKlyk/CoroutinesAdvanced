@@ -6,14 +6,20 @@
             type="de.klyk.dummy.ui.MainDummyFragmentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="Ich bin erstes dummy Fragment" />
+        <Button
+            android:id="@+id/dummy_nav_module_to_dummy2_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Navigiere mich zum zweiten Dummy in diesem Modul"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

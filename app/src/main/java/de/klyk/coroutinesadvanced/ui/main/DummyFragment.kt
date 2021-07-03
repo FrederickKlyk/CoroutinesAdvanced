@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import de.klyk.coroutinesadvanced.databinding.DummyFragmentBinding
 import de.klyk.coroutinesadvanced.ui.base.BaseFragment
 import de.klyk.coroutinesadvanced.ui.main.tabs.TabContainerFragmentDirections
+import de.klyk.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragmentDirections
 import kotlinx.android.synthetic.main.dummy_fragment.*
 
 class DummyFragment : BaseFragment() {
@@ -30,6 +31,11 @@ class DummyFragment : BaseFragment() {
             action.message = "meine neue Test Message"
             findNavController().navigate(action)
             // Alternativ -->  findNavController().navigate(R.id.action_tabContainerFragment_to_dummyFragment2, bundle)
+        }
+
+        dummy_nav_module_button.setOnClickListener {
+            val action = TabContainerFragmentDirections.actionMenuCoroutinesToDummyModule()
+            findNavController().navigate(action)
         }
     }
 }

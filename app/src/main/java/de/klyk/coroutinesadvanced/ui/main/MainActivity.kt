@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
         val drawerLayout: DrawerLayout? = findViewById(R.id.drawerMain_DL)
         //it means that they will remain on the backstack after navigating to one another. That’s called placing as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.menu_coroutines, R.id.menu_overviewLibs),
+            setOf(R.id.menu_coroutines, R.id.menu_overviewLibs, R.id.dummy_nav_graph),
             drawerLayout
         )
 
