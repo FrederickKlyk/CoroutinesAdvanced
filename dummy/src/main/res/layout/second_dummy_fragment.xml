@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Ich bin erstes dummy Fragment" />
+            android:text="Ich bin zweites dummy Fragment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

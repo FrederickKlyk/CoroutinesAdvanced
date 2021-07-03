@@ -51,4 +51,15 @@
                 android:title="@string/paging3remote" />
         </menu>
     </item>
+
+    <item
+        android:id="@+id/dummyModuleHeader"
+        android:title="Dummy Module Header">
+        <menu>
+            <item
+                android:id="@+id/menu_dummy_module_fragment"
+                android:icon="@android:mipmap/sym_def_app_icon"
+                android:title="dummy module fragment" />
+        </menu>
+    </item>
 </menu>

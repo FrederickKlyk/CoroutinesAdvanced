@@ -5,18 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.dummy.R
 import com.example.dummy.databinding.MainDummyFragmentBinding
+import com.example.dummy.databinding.SecondDummyFragmentBinding
 
 
-class MainDummyFragment : Fragment() {
+class SecondDummyFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        return MainDummyFragmentBinding.inflate(inflater).apply {
-            lifecycleOwner = this@MainDummyFragment
+        return SecondDummyFragmentBinding.inflate(inflater).apply {
+            lifecycleOwner = this@SecondDummyFragment
         }.root
     }
 }

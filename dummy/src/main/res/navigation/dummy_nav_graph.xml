@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dummy_nav_graph"
+    app:startDestination="@id/mainDummyFragment">
+
+    <fragment
+        android:id="@+id/mainDummyFragment"
+        android:name="de.klyk.dummy.ui.MainDummyFragment"
+        android:label="MainDummyFragment"
+        tools:layout="@layout/main_dummy_fragment">
+        <action
+            android:id="@+id/action_mainDummyFragment_to_secondDummyFragment"
+            app:destination="@id/secondDummyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondDummyFragment"
+        android:name="de.klyk.dummy.ui.SecondDummyFragment"
+        android:label="SecondDummyFragment"
+        tools:layout="@layout/second_dummy_fragment" />
+</navigation>

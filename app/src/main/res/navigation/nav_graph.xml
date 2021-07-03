@@ -37,6 +37,10 @@
             android:id="@+id/action_menu_coroutines_to_moviePagingPagingSourceFragment"
             app:destination="@id/menu_recycler_paging_source" />
 
+        <action
+            android:id="@+id/action_menu_coroutines_to_dummyModule"
+            app:destination="@+id/dummy_nav_graph" />
+
     </fragment>
     <fragment
         android:id="@+id/menu_overviewLibs"
@@ -99,4 +103,6 @@
         android:name="de.klyk.coroutinesadvanced.ui.paging.pagingsource.MoviePagingPagingSourceFragment"
         android:label="MoviePagingPagingSourceFragment"
         tools:layout="@layout/movie_paging_paging_source_fragment"/>
+
+    <include app:graph="@navigation/dummy_nav_graph"/>
 </navigation>
