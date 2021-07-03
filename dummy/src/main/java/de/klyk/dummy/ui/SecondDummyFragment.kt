@@ -10,7 +10,7 @@ import com.example.dummy.databinding.MainDummyFragmentBinding
 import com.example.dummy.databinding.SecondDummyFragmentBinding
 
 
-class SecondDummyFragment : Fragment() {
+internal class SecondDummyFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

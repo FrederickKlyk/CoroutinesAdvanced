@@ -11,7 +11,7 @@ import com.example.dummy.R
 import com.example.dummy.databinding.MainDummyFragmentBinding
 
 
-class MainDummyFragment : Fragment() {
+internal class MainDummyFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,7 @@ class MainDummyFragment : Fragment() {
         val button = view.findViewById<Button>(R.id.dummy_nav_module_to_dummy2_button)
 
         button.setOnClickListener {
-            findNavController().navigate(R.id.secondDummyFragment)
+            findNavController().navigate(MainDummyFragmentDirections.actionMainDummyFragmentToSecondDummyFragment())
         }
     }
 }
