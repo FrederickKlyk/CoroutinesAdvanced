@@ -6,7 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
+import de.klyk.coroutinesadvanced.R
 import de.klyk.coroutinesadvanced.databinding.TabContainerFragmentBinding
 import de.klyk.coroutinesadvanced.ui.base.viewpager2.FragmentStateViewPagerAdapter
 import de.klyk.coroutinesadvanced.ui.main.DummyFragment
@@ -52,11 +57,11 @@ class TabContainerFragment : Fragment() {
     }
 
     private fun initTabLayout() {
-        TabLayoutMediator(mainTabs_TL, viewPagerForTabs){ tab, position ->
-                //Alle Tab-Title werden gesetzt
-                tab.text = tabAdapter.getPageTitle(position)
-                Timber.d("Tabs $position")
-            }.attach()
+        TabLayoutMediator(mainTabs_TL, viewPagerForTabs) { tab, position ->
+            //Alle Tab-Title werden gesetzt
+            tab.text = tabAdapter.getPageTitle(position)
+            Timber.d("Tabs $position")
+        }.attach()
         viewPagerForTabs.currentItem = 0
     }
 }

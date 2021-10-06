@@ -1,5 +1,5 @@
 object Versions {
-    const val gradle = "7.0.0-beta05"
+    const val gradle = "7.0.2"
     const val timber = "4.7.1"
     const val lifecycle = "2.2.0"
     const val lifecycle_test = "2.1.0"

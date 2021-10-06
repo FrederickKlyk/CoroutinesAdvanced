@@ -27,7 +27,7 @@ class App : Application() {
                     networkModule,
                     networkServicesModule(baseUrl = "https://samples.openweathermap.org"),
                     domainModule,
-                   dummyViewModelModule
+                    dummyViewModelModule
                 )
             )
         }

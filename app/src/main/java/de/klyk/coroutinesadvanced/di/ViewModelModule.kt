@@ -2,6 +2,7 @@ package de.klyk.coroutinesadvanced.di
 
 import de.klyk.coroutinesadvanced.ui.list.ListFragmentViewModel
 import de.klyk.coroutinesadvanced.ui.main.MainActivityViewModel
+import de.klyk.coroutinesadvanced.ui.main.MainSharedViewModel
 import de.klyk.coroutinesadvanced.ui.main.coroutines.*
 import de.klyk.coroutinesadvanced.ui.main.tabs.TabContainerViewModel
 import de.klyk.coroutinesadvanced.ui.overviewlibs.OverviewLibsFragmentViewModel
@@ -27,4 +28,5 @@ val viewModelModule = module {
     viewModel { MoviePagingRemoteFragmentViewModel(movieDatabase = get(), getMoviesFlowRepository = get(named("remote"))) }
     viewModel { StateSharedFlowFragmentViewModel() }
     viewModel { StateFlowFragmentViewModel() }
+    viewModel { MainSharedViewModel() }
 }
