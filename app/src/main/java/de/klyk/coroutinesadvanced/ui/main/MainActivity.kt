@@ -27,16 +27,16 @@ import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListener {
+    var binding: MainActivityBinding? = null
 
     val viewModel: MainActivityViewModel by inject()
     val sharedViewModel: MainSharedViewModel by inject()
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity).run {
+        binding = DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity).apply {
             viewModel = this@MainActivity.viewModel
             lifecycleOwner = this@MainActivity
         }
@@ -56,6 +56,11 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
     private fun setupNavigation(navController: NavController) {
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerMain_DL)
 
@@ -69,7 +74,7 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
             drawerLayout
         )
 
-        NavigationUI.setupWithNavController(bottomNavigationView, navController)
+        binding?.bottomNavigationView?.let { NavigationUI.setupWithNavController(it, navController) }
         NavigationUI.setupWithNavController(navigationView, navController)
         //Note: When using a Toolbar, Navigation automatically handles click events for the Navigation button, so you do not need to override onSupportNavigateUp().
         findViewById<Toolbar>(R.id.toolbar).setupWithNavController(
