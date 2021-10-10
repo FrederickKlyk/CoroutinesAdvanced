@@ -9,10 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import de.klyk.coroutinesadvanced.R
 import de.klyk.coroutinesadvanced.databinding.MoviePagingLoadStateBinding
 
-class MovieLoadStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<MovieLoadingStateViewHolder>() {
+/** Adapter, der auf die LoadingStates der Paging-Daten im Footer interargiert */
+class MovieLoadStateAdapter(
+    private val retry: () -> Unit
+) : LoadStateAdapter<MovieLoadingStateViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): MovieLoadingStateViewHolder {
-        return MovieLoadingStateViewHolder.create(parent)
+        return MovieLoadingStateViewHolder.create(
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: MovieLoadingStateViewHolder, loadState: LoadState) {
@@ -44,7 +49,9 @@ class MovieLoadingStateViewHolder(private val binding: MoviePagingLoadStateBindi
 
             val binding = MoviePagingLoadStateBinding.bind(view)
 
-            return MovieLoadingStateViewHolder(binding)
+            return MovieLoadingStateViewHolder(
+                binding
+            )
         }
     }
 }

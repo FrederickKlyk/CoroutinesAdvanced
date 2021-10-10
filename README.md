@@ -20,3 +20,7 @@ Kotlin DSL Gradle
 Koin
 
 Ktor client with optional mock engine
+
+Room 2.3
+
+Paging 3 (PagingSource & RemoteMediator)

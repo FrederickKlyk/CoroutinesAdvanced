@@ -5,14 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Movie::class, Movie.MovieRemoteKeys::class], version = 5, exportSchema = false)
+@Database(entities = [Movie::class, Movie.MovieRemoteKeys::class], version = 8, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
     abstract fun movieRemoteKeysDao(): MovieRemoteKeysDao
 
     companion object {
-        const val DATABASE_NAME = "movies.db"
+        private const val DATABASE_NAME = "movies.db"
 
         @Volatile // All threads have immediate access to this property
         private var instance: MovieDatabase? = null

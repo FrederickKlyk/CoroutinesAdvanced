@@ -15,5 +15,9 @@
     <string name="viewpager_2_pages_ueber_recyclerview">ViewPager 2 (Recyclerview)</string>
     <string name="recyclerview_mit_diffutil">RecyclerView mit DiffUtil</string>
     <string name="recyclerview_listadapter_diffutil">RecyclerView ListAdapter (DiffUtil)</string>
-    <string name="paging3">Paging3</string>
+    <string name="paging3pagesource">Paging 3 (PageSource)</string>
+    <string name="paging3remote">Paging 3 (RemoteMediator)</string>
+    <string name="add_friend_hint">Freund hinzufügen</string>
+    <string name="load_friends_button">Freunde laden</string>
+    <string name="init_setfragmentresultlistener">init setFragmentResultListener</string>
 </resources>

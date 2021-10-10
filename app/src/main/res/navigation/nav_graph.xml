@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/menu_coroutines">
+
+    <include app:graph="@navigation/dummy_nav_graph"/>
+
     <fragment
         android:id="@+id/menu_coroutines"
         android:name="de.klyk.coroutinesadvanced.ui.main.tabs.TabContainerFragment"
@@ -32,7 +35,13 @@
             app:destination="@id/menu_recycler_diffutil" />
         <action
             android:id="@+id/action_menu_coroutines_to_moviePagingFragment"
-            app:destination="@id/menu_recycler_paging" />
+            app:destination="@id/menu_recycler_paging_remote" />
+        <action
+            android:id="@+id/action_menu_coroutines_to_moviePagingPagingSourceFragment"
+            app:destination="@id/menu_recycler_paging_source" />
+        <action
+            android:id="@+id/action_menu_coroutines_to_dummyModule"
+            app:destination="@+id/dummy_nav_graph" />
 
     </fragment>
     <fragment
@@ -87,8 +96,13 @@
         android:label="ListFragment"
         tools:layout="@layout/list_fragment" />
     <fragment
-        android:id="@+id/menu_recycler_paging"
-        android:name="de.klyk.coroutinesadvanced.ui.paging.MoviePagingFragment"
+        android:id="@+id/menu_recycler_paging_remote"
+        android:name="de.klyk.coroutinesadvanced.ui.paging.remotemediator.MoviePagingRemoteFragment"
         android:label="MoviePagingFragment"
         tools:layout="@layout/movie_paging_fragment" />
+    <fragment
+        android:id="@+id/menu_recycler_paging_source"
+        android:name="de.klyk.coroutinesadvanced.ui.paging.pagingsource.MoviePagingPagingSourceFragment"
+        android:label="MoviePagingPagingSourceFragment"
+        tools:layout="@layout/movie_paging_paging_source_fragment"/>
 </navigation>

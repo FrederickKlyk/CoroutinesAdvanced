@@ -1,4 +1,4 @@
-package de.klyk.coroutinesadvanced.ui.paging
+package de.klyk.coroutinesadvanced.ui.paging.remotemediator
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.klyk.coroutinesadvanced.databinding.MoviePagingFragmentBinding
+import de.klyk.coroutinesadvanced.ui.paging.MovieLoadStateAdapter
 import kotlinx.android.synthetic.main.movie_paging_fragment.*
 import kotlinx.android.synthetic.main.movie_paging_fragment.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -22,9 +23,9 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class MoviePagingFragment : Fragment() {
+class MoviePagingRemoteFragment : Fragment() {
 
-    val viewModel: MoviePagingFragmentViewModel by inject()
+    val viewModelRemote: MoviePagingRemoteFragmentViewModel by inject()
     private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) { MoviePagingAdapter(this) }
     private var searchJob: Job? = null
 
@@ -33,8 +34,8 @@ class MoviePagingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = MoviePagingFragmentBinding.inflate(inflater).apply {
-            lifecycleOwner = this@MoviePagingFragment
-            viewModel = this@MoviePagingFragment.viewModel
+            lifecycleOwner = this@MoviePagingRemoteFragment
+            viewModel = this@MoviePagingRemoteFragment.viewModelRemote
         }.root
         initRecyclerView(view)
 
@@ -51,10 +52,9 @@ class MoviePagingFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
-        view.movieRecycler.apply {
+        view.movieRecyclerRemote.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter =
-                movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
+            adapter = movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
             addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
         }
     }
@@ -65,7 +65,7 @@ class MoviePagingFragment : Fragment() {
     private fun subscribeObservers() {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
-            viewModel.movieFlow.collectLatest { pagingData ->
+            viewModelRemote.movieFlow.collectLatest { pagingData ->
                 Timber.d("submitData to Adapter")
                 movieAdapter.submitData(pagingData)
             }

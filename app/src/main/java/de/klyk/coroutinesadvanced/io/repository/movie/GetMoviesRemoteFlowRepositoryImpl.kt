@@ -7,15 +7,14 @@ import de.klyk.coroutinesadvanced.io.db.movies.Movie
 import de.klyk.coroutinesadvanced.io.db.movies.MovieDatabase
 import kotlinx.coroutines.flow.Flow
 
-
-class GetMoviesFlowRepositoryImpl(
+class GetMoviesRemoteFlowRepositoryImpl(
     val movieDatabase: MovieDatabase,
     val movieRemoteMediator: MovieRemoteMediator
 ) : GetMoviesFlowRepository {
 
     override fun getMovies(searchQuery: String): Flow<PagingData<Movie>> {
         return Pager(
-            config = PagingConfig(pageSize = 10, initialLoadSize = 20, enablePlaceholders = false, maxSize = 30),
+            config = PagingConfig(pageSize = 50, initialLoadSize = 100, prefetchDistance = 50, enablePlaceholders = false),
             remoteMediator = movieRemoteMediator.apply { this.searchQuery(searchQuery) },
             pagingSourceFactory = { movieDatabase.movieDao().getDatabasePagingSource("%${searchQuery}%") }
         ).flow

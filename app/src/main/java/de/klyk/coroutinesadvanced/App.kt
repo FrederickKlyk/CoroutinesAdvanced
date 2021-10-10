@@ -3,6 +3,7 @@ package de.klyk.coroutinesadvanced
 import android.app.Application
 import de.klyk.android.core.di.networkModule
 import de.klyk.coroutinesadvanced.di.*
+import de.klyk.dummy.di.viewModelModule as dummyViewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -25,7 +26,8 @@ class App : Application() {
                     databaseModule,
                     networkModule,
                     networkServicesModule(baseUrl = "https://samples.openweathermap.org"),
-                    domainModule
+                    domainModule,
+                    dummyViewModelModule
                 )
             )
         }

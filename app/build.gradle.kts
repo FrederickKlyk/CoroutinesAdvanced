@@ -16,12 +16,12 @@ jacoco {
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion = "29.0.3"
+    compileSdkVersion(30)
+    buildToolsVersion = "30.0.3"
     defaultConfig {
         applicationId = "de.klyk.coroutinesadvanced"
         minSdkVersion(23)
-        targetSdkVersion(29)
+        targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -40,8 +40,12 @@ android {
         }
     }
 
+    dataBinding {
+        android.buildFeatures.dataBinding = true
+    }
+
     buildFeatures {
-        dataBinding = true
+        viewBinding = true
     }
 
     compileOptions {
@@ -59,11 +63,12 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":dummy"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.core:core-ktx:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation(Dependencies.fragment)
 
@@ -117,7 +122,7 @@ dependencies {
     implementation(Dependencies.coil)
 
     // Palette
-    implementation("com.android.support:palette-v7:28.0.0")
+    implementation("androidx.palette:palette-ktx:1.0.0")
 
     //Result<V,E>
     implementation(Dependencies.kittinunf_result)

@@ -1,15 +1,15 @@
-package de.klyk.coroutinesadvanced.ui.paging
+package de.klyk.coroutinesadvanced.ui.paging.remotemediator
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
-import de.klyk.coroutinesadvanced.io.db.movies.Movie
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.cachedIn
+import androidx.paging.insertSeparators
+import androidx.paging.map
 import de.klyk.coroutinesadvanced.io.db.movies.MovieDatabase
 import de.klyk.coroutinesadvanced.io.db.movies.MovieModel
-import de.klyk.coroutinesadvanced.io.network.movies.MovieService
 import de.klyk.coroutinesadvanced.io.repository.movie.GetMoviesFlowRepository
-import de.klyk.coroutinesadvanced.io.repository.movie.MovieRemoteMediator
 import de.klyk.coroutinesadvanced.ui.base.BaseViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.debounce
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import timber.log.Timber
 
-class MoviePagingFragmentViewModel(
+class MoviePagingRemoteFragmentViewModel(
     val movieDatabase: MovieDatabase,
     val getMoviesFlowRepository: GetMoviesFlowRepository
 ) : BaseViewModel() {
@@ -29,11 +29,12 @@ class MoviePagingFragmentViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 movieDatabase.movieDao().clearAllMovies()
-                movieDatabase.movieDao().getMovies()
-            }.apply {
-                Timber.d("Aktuelle Moviesize: $size")
             }
         }
+    }
+
+    fun resetSerachQuery() {
+        searchQuery.value = ""
     }
 
     /** Sucheingabe triggerd eine neue Suche aus */
@@ -45,25 +46,14 @@ class MoviePagingFragmentViewModel(
         .debounce(300)
         .distinctUntilChanged()
         .flatMapLatest { getMoviesFlowRepository.getMovies(it) }
-        .map { pagingData -> pagingData.map { MovieModel.MovieItem(it)}}
+        .map { pagingData -> pagingData.map { MovieModel.MovieItem(it) } }
         .map {
             it.insertSeparators<MovieModel.MovieItem, MovieModel> { before, after ->
-                if (after == null) {
-                    // we're at the end of the list
-                    return@insertSeparators MovieModel.SeperatorItem("Footer")
-                }
-
-                val alphabet = after.movie.title.replace("The", "").trim().take(1)
-
-                if (before == null) {
-                    // we're at the beginning of the list
-                    return@insertSeparators MovieModel.SeperatorItem("HEADER")
-                }
-
-                if (before.movie.title.replace("The", "").trim().take(1) != alphabet) {
-                    MovieModel.SeperatorItem(alphabet)
-                } else {
-                    null
+                when {
+                    before == null -> return@insertSeparators MovieModel.SeperatorItem("1")
+                    after == null -> return@insertSeparators MovieModel.SeperatorItem("Ende der Liste")
+                    before.movie.page < after.movie.page -> MovieModel.SeperatorItem(after.movie.page.toString())
+                    else -> null
                 }
             }
         }.cachedIn(viewModelScope)
