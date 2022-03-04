@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import de.klyk.coroutinesadvanced.databinding.TabContainerPagesFragmentBinding
+import de.klyk.coroutinesadvanced.databinding.Viewpager2FragmentBinding
 import de.klyk.coroutinesadvanced.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.tab_container_pages_fragment.*
 import org.koin.android.ext.android.inject
 
 
 class Viewpager2TabsPagesFragment : BaseFragment() {
+    var binding : TabContainerPagesFragmentBinding? = null
 
     val viewModel: Viewpager2TabsPagesViewModel by inject()
     private val adapter = TabViewPagerAdapter()
@@ -20,10 +21,12 @@ class Viewpager2TabsPagesFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return TabContainerPagesFragmentBinding.inflate(inflater).apply {
+        binding = TabContainerPagesFragmentBinding.inflate(inflater).apply {
             viewModel = this.viewModel
             lifecycleOwner = this@Viewpager2TabsPagesFragment
-        }.root
+        }
+
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,10 +36,14 @@ class Viewpager2TabsPagesFragment : BaseFragment() {
     }
 
     private fun setupTabLayout() {
-        viewPagerForTabsDots.adapter = adapter
-        TabLayoutMediator(tabsDots_TL, viewPagerForTabsDots) { tab, position ->
-            //Style von einzelnen Tabs
-        }.attach()
+        binding?.viewPagerForTabsDots?.adapter = adapter
+        binding?.tabsDotsTL?.let {
+            binding?.viewPagerForTabsDots?.let { it1 ->
+                TabLayoutMediator(it, it1) { tab, position ->
+                    //Style von einzelnen Tabs
+                }.attach()
+            }
+        }
 
         adapter.setItem(viewModel.categories.value)
     }

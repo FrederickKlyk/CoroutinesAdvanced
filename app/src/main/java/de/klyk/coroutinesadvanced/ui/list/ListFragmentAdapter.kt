@@ -3,12 +3,11 @@ package de.klyk.coroutinesadvanced.ui.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import de.klyk.coroutinesadvanced.R
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_fragment_item.view.*
 
 class ListFragmentAdapter : ListAdapter<String, ListFragmentAdapter.ListFragmentViewHolder>(ListFragmentAdapterListDiff()) {
 
@@ -30,10 +29,11 @@ class ListFragmentAdapter : ListAdapter<String, ListFragmentAdapter.ListFragment
         }
     }
 
-    inner class ListFragmentViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    inner class ListFragmentViewHolder(val containerView: View) : RecyclerView.ViewHolder(containerView) {
 
         fun bind(text: String) {
-            containerView.item_tv.text = text
+            val itemTV = containerView.findViewById<TextView>(R.id.item_tv)
+            itemTV.text = text
         }
     }
 }

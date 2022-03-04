@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import de.klyk.coroutinesadvanced.databinding.MoviePagingFragmentBinding
 import de.klyk.coroutinesadvanced.databinding.Viewpager2FragmentBinding
 import de.klyk.coroutinesadvanced.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.viewpager2_fragment.*
 import org.koin.android.ext.android.inject
 
 class Viewpager2HorizontalFragment : BaseFragment() {
+    var binding : Viewpager2FragmentBinding? = null
 
     val viewModel: Viewpager2SharedViewModel by inject()
     private val adapter: CategoryAdapter by lazy { CategoryAdapter() }
@@ -20,10 +21,12 @@ class Viewpager2HorizontalFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return Viewpager2FragmentBinding.inflate(inflater).apply {
+        binding = Viewpager2FragmentBinding.inflate(inflater).apply {
             lifecycleOwner = this@Viewpager2HorizontalFragment
             viewModel = viewModel
-        }.root
+        }
+
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,8 +36,8 @@ class Viewpager2HorizontalFragment : BaseFragment() {
     }
 
     private fun setupViewPager() {
-        viewPager2.adapter = adapter
-        viewPager2.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding?.viewPager2?.adapter = adapter
+        binding?.viewPager2?.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         adapter.setItem(viewModel.categories.value)
     }
 }

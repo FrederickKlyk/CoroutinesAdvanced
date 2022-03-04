@@ -15,14 +15,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationBarMenu
-import com.google.android.material.navigation.NavigationBarMenuView
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.navigation.NavigationView
 import de.klyk.coroutinesadvanced.R
 import de.klyk.coroutinesadvanced.databinding.MainActivityBinding
-import kotlinx.android.synthetic.main.main_activity.*
-import kotlinx.android.synthetic.main.tab_container_fragment.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
@@ -36,10 +30,11 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity).apply {
-            viewModel = this@MainActivity.viewModel
-            lifecycleOwner = this@MainActivity
-        }
+        binding = DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity)
+            .apply {
+                viewModel = this@MainActivity.viewModel
+                lifecycleOwner = this@MainActivity
+            }
 
         navController = findNavController(R.id.nav_host_fragment)
         setupNavigation(navController)
@@ -62,7 +57,7 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
     }
 
     private fun setupNavigation(navController: NavController) {
-        appBarConfiguration = AppBarConfiguration(navController.graph, drawerMain_DL)
+        appBarConfiguration = AppBarConfiguration(navController.graph, binding?.drawerMainDL)
 
         val drawerLayout: DrawerLayout? = findViewById(R.id.drawerMain_DL)
         //Next, connect the DrawerLayout to your navigation graph by passing it to AppBarConfiguration, as shown in the following example
@@ -74,8 +69,13 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
             drawerLayout
         )
 
-        binding?.bottomNavigationView?.let { NavigationUI.setupWithNavController(it, navController) }
-        NavigationUI.setupWithNavController(navigationView, navController)
+        binding?.bottomNavigationView?.let {
+            NavigationUI.setupWithNavController(
+                it,
+                navController
+            )
+        }
+        binding?.navigationView?.let { NavigationUI.setupWithNavController(it, navController) }
         //Note: When using a Toolbar, Navigation automatically handles click events for the Navigation button, so you do not need to override onSupportNavigateUp().
         findViewById<Toolbar>(R.id.toolbar).setupWithNavController(
             navController,
@@ -94,8 +94,8 @@ class MainActivity : AppCompatActivity(), AppBarConfiguration.OnNavigateUpListen
     }
 
     override fun onBackPressed() {
-        if (drawerMain_DL.isDrawerOpen(GravityCompat.START)) {
-            drawerMain_DL.closeDrawer(GravityCompat.START)
+        if (binding?.drawerMainDL?.isDrawerOpen(GravityCompat.START) == true) {
+            binding?.drawerMainDL?.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }

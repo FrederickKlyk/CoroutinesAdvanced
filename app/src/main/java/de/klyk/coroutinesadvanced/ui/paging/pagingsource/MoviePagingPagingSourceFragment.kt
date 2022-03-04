@@ -12,9 +12,8 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.klyk.coroutinesadvanced.databinding.MoviePagingPagingSourceFragmentBinding
+import de.klyk.coroutinesadvanced.databinding.TabContainerFragmentBinding
 import de.klyk.coroutinesadvanced.ui.paging.MovieLoadStateAdapter
-import kotlinx.android.synthetic.main.movie_paging_fragment.*
-import kotlinx.android.synthetic.main.movie_paging_paging_source_fragment.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
@@ -24,6 +23,7 @@ import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 class MoviePagingPagingSourceFragment : Fragment() {
+    var binding : MoviePagingPagingSourceFragmentBinding? = null
 
     val viewModel: MoviePagingSourceFragmentViewModel by inject()
     private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) { MoviePagingSourceAdapter(this) }
@@ -34,19 +34,18 @@ class MoviePagingPagingSourceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = MoviePagingPagingSourceFragmentBinding.inflate(inflater).apply {
+        binding = MoviePagingPagingSourceFragmentBinding.inflate(inflater).apply {
             lifecycleOwner = this@MoviePagingPagingSourceFragment
             viewModel = this@MoviePagingPagingSourceFragment.viewModel
-        }.root
+        }
 
-        initRecyclerView(view)
+        binding?.root?.let { initRecyclerView(it) }
 
-        return view
+        return binding?.root
     }
 
-    @FlowPreview
-    @ExperimentalCoroutinesApi
-    @ExperimentalPagingApi
+
+    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -55,7 +54,7 @@ class MoviePagingPagingSourceFragment : Fragment() {
 
 
     private fun initRecyclerView(view: View) {
-        view.movieRecyclerSource.apply {
+        binding?.movieRecyclerSource?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
             addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
@@ -94,6 +93,6 @@ class MoviePagingPagingSourceFragment : Fragment() {
     }
 
     private fun showProgressBar(display: Boolean) {
-        paging_progressBar.visibility = if (display) View.VISIBLE else View.GONE
+        binding?.pagingProgressBar?.visibility = if (display) View.VISIBLE else View.GONE
     }
 }

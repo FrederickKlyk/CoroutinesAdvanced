@@ -3,10 +3,10 @@ package de.klyk.coroutinesadvanced.ui.viewpager2.tabs
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.klyk.coroutinesadvanced.R
 import de.klyk.coroutinesadvanced.domain.viewpager2.Category
-import kotlinx.android.synthetic.main.vierpager2_tab_cell.view.*
 
 class TabViewPagerAdapter : RecyclerView.Adapter<TabViewPagerViewHolder>() {
 
@@ -30,6 +30,7 @@ class TabViewPagerViewHolder constructor(itemView: View) : RecyclerView.ViewHold
     constructor(parent: ViewGroup) : this(LayoutInflater.from(parent.context).inflate(R.layout.vierpager2_tab_cell, parent, false))
 
     fun bind(text: String) {
-        itemView.text_TV.text = text
+        val textTV = itemView.findViewById<TextView>(R.id.text_TV)
+        textTV.text = text
     }
 }

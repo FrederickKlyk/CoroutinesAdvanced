@@ -15,12 +15,12 @@ jacoco {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = 30
     buildToolsVersion = "30.0.3"
     defaultConfig {
         applicationId = "de.klyk.coroutinesadvanced"
         minSdk = 23
-        targetSdk = 31
+        targetSdk = 30
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -1,12 +1,11 @@
 package de.klyk.coroutinesadvanced.ui.list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import de.klyk.coroutinesadvanced.databinding.ListFragmentBinding
-import kotlinx.android.synthetic.main.list_fragment.view.*
 import org.koin.android.ext.android.inject
 import kotlin.LazyThreadSafetyMode.NONE
 
@@ -15,26 +14,27 @@ class ListFragment : Fragment() {
 
     val viewModel: ListFragmentViewModel by inject()
     private val adapter by lazy(NONE) { ListFragmentAdapter() }
+    val binding: ListFragmentBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view=  ListFragmentBinding.inflate(inflater).apply {
+        val binding = ListFragmentBinding.inflate(inflater).apply {
             lifecycleOwner = this@ListFragment
             viewModel = this@ListFragment.viewModel
-        }.root
+        }
 
-        view.rv1.adapter = adapter
+        binding.rv1.adapter = adapter
 
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeObservers()
 
-        view.listFragmentButton.setOnClickListener{
+        binding?.listFragmentButton?.setOnClickListener {
             adapter.submitList(listOf("1", "2", "3", "4", "5"))
         }
     }

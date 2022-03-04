@@ -11,21 +11,23 @@ import de.klyk.coroutinesadvanced.databinding.Viewpager2FragmentBinding
 import de.klyk.coroutinesadvanced.ui.base.BaseFragment
 import de.klyk.coroutinesadvanced.ui.viewpager2.common.TabLayoutOnPageChangeCallback
 import de.klyk.coroutinesadvanced.ui.viewpager2.common.ViewPager2PageTransformation
-import kotlinx.android.synthetic.main.viewpager2_fragment.*
 import org.koin.android.ext.android.inject
 import kotlin.math.abs
 
 class Viewpager2PageTransition : BaseFragment() {
+    var binding : Viewpager2FragmentBinding? = null
 
     val viewModel: Viewpager2SharedViewModel by inject()
     private val adapter: CategoryAdapter by lazy { CategoryAdapter() }
     private lateinit var tabLayoutOnPageChangeCallback: TabLayoutOnPageChangeCallback
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return Viewpager2FragmentBinding.inflate(inflater).apply {
+        binding = Viewpager2FragmentBinding.inflate(inflater).apply {
             viewModel = viewModel
             lifecycleOwner = this@Viewpager2PageTransition
-        }.root
+        }
+
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,19 +37,19 @@ class Viewpager2PageTransition : BaseFragment() {
     }
 
     private fun setupViewPager2() {
-        viewPager2.adapter = adapter
+        binding?.viewPager2?.adapter = adapter
         adapter.setItem(viewModel.categories.value)
 
         // Springt auf die letzte Page, wenn die erste Page ausgewählt wird.
         tabLayoutOnPageChangeCallback = TabLayoutOnPageChangeCallback(lastItem = viewModel.categories.value.size - 1) {
-            viewPager2.currentItem = it
+            binding?.viewPager2?.currentItem = it
         }
 
         // Abstände zwischen den Pages hinzufügen
         val marginPageTransformer = MarginPageTransformer(50)
 
-        viewPager2.registerOnPageChangeCallback(tabLayoutOnPageChangeCallback)
-        viewPager2.setPageTransformer(CompositePageTransformer().apply {
+        binding?.viewPager2?.registerOnPageChangeCallback(tabLayoutOnPageChangeCallback)
+        binding?.viewPager2?.setPageTransformer(CompositePageTransformer().apply {
             addTransformer(ViewPager2PageTransformation())
             addTransformer(translationPageTransformer())
             addTransformer(marginPageTransformer)

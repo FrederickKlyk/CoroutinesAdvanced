@@ -2,22 +2,18 @@ package de.klyk.coroutinesadvanced.ui.main.coroutines
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
-import de.klyk.coroutinesadvanced.R
+import de.klyk.coroutinesadvanced.databinding.StateSharedFlowFragmentBinding
 import de.klyk.coroutinesadvanced.databinding.WebsocketsFragmentBinding
-import de.klyk.coroutinesadvanced.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.websockets_fragment.*
 import org.koin.android.ext.android.inject
 
 class WebsocketsFragment : Fragment() {
+
+    var binding : WebsocketsFragmentBinding? = null
 
     val viewModel: WebsocketsFragmentViewModel by inject()
     val adapter: WebsocketsFragmentAdapter by lazy { WebsocketsFragmentAdapter() }
@@ -26,10 +22,12 @@ class WebsocketsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       return WebsocketsFragmentBinding.inflate(inflater).apply {
-           lifecycleOwner = this@WebsocketsFragment
-           viewModel = this@WebsocketsFragment.viewModel
-       }.root
+        binding = WebsocketsFragmentBinding.inflate(inflater).apply {
+            lifecycleOwner = this@WebsocketsFragment
+            viewModel = this@WebsocketsFragment.viewModel
+        }
+
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +44,7 @@ class WebsocketsFragment : Fragment() {
     }
 
     private fun setupRecylerview() {
-        websocketsMessagesRV.adapter = adapter
+        binding?.websocketsMessagesRV?.adapter = adapter
     }
 
     companion object {

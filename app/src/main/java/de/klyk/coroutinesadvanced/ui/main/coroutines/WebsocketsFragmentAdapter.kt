@@ -5,7 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.klyk.coroutinesadvanced.databinding.WebsocketsListItemBinding
 
-class WebsocketsFragmentAdapter : RecyclerView.Adapter<WebsocketsFragmentAdapter.WebsocketsViewholder>() {
+class WebsocketsFragmentAdapter :
+    RecyclerView.Adapter<WebsocketsFragmentAdapter.WebsocketsViewholder>() {
 
     private val chatMessagesList = mutableListOf<String>()
 
@@ -27,7 +28,8 @@ class WebsocketsFragmentAdapter : RecyclerView.Adapter<WebsocketsFragmentAdapter
         holder.bind(chatMessagesList[position])
     }
 
-    inner class WebsocketsViewholder(val binding: WebsocketsListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class WebsocketsViewholder(val binding: WebsocketsListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(message: String) {
             binding.viewModel = WebsocketsFragmentItemViewModel(message)

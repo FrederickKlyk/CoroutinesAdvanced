@@ -12,30 +12,31 @@ import de.klyk.coroutinesadvanced.ui.base.BaseFragment
 import de.klyk.coroutinesadvanced.ui.main.coroutines.StateFlowFragment.Companion.COROUTINES_TO_STATE_FLOW_BUNDLE_FRIEND_KEY
 import de.klyk.coroutinesadvanced.ui.main.coroutines.StateFlowFragment.Companion.COROUTINES_TO_STATE_FLOW_REQUEST_KEY
 import de.klyk.coroutinesadvanced.utils.NotificationUtil
-import kotlinx.android.synthetic.main.coroutines_fragment.*
-import kotlinx.android.synthetic.main.coroutines_fragment.view.*
-import kotlinx.android.synthetic.main.main_activity.*
 import org.koin.android.ext.android.inject
 
 class CoroutinesFragment : BaseFragment() {
+
+    var binding: CoroutinesFragmentBinding? = null
 
     private val viewModel: CoroutinesFragmentViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        return CoroutinesFragmentBinding.inflate(inflater).apply {
+    ): View? {
+        binding = CoroutinesFragmentBinding.inflate(inflater).apply {
             viewModel = this@CoroutinesFragment.viewModel
             lifecycleOwner = this@CoroutinesFragment
-        }.root
+        }
+
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.coroutinesToStateFlowButton.setOnClickListener {
-            val friendName = view.coroutinesToStateFlowET.text.toString()
+        binding?.coroutinesToStateFlowButton?.setOnClickListener {
+            val friendName = binding?.coroutinesToStateFlowET?.text.toString()
             setFragmentResult(
                 COROUTINES_TO_STATE_FLOW_REQUEST_KEY,
                 bundleOf(COROUTINES_TO_STATE_FLOW_BUNDLE_FRIEND_KEY to friendName)
@@ -45,7 +46,7 @@ class CoroutinesFragment : BaseFragment() {
     }
 
     private fun showSnackbar(description: String) {
-        coroutinesCoordinatorLayout.let {
+        binding?.coroutinesCoordinatorLayout?.let {
             NotificationUtil.createSnackBar(it, description).show()
         }
     }

@@ -12,9 +12,8 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.klyk.coroutinesadvanced.databinding.MoviePagingFragmentBinding
+import de.klyk.coroutinesadvanced.databinding.MoviePagingPagingSourceFragmentBinding
 import de.klyk.coroutinesadvanced.ui.paging.MovieLoadStateAdapter
-import kotlinx.android.synthetic.main.movie_paging_fragment.*
-import kotlinx.android.synthetic.main.movie_paging_fragment.view.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
@@ -24,6 +23,7 @@ import org.koin.android.ext.android.inject
 import timber.log.Timber
 
 class MoviePagingRemoteFragment : Fragment() {
+    var binding : MoviePagingFragmentBinding? = null
 
     val viewModelRemote: MoviePagingRemoteFragmentViewModel by inject()
     private val movieAdapter by lazy(LazyThreadSafetyMode.NONE) { MoviePagingAdapter(this) }
@@ -33,18 +33,16 @@ class MoviePagingRemoteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = MoviePagingFragmentBinding.inflate(inflater).apply {
+        binding= MoviePagingFragmentBinding.inflate(inflater).apply {
             lifecycleOwner = this@MoviePagingRemoteFragment
             viewModel = this@MoviePagingRemoteFragment.viewModelRemote
-        }.root
-        initRecyclerView(view)
+        }
+        binding?.root?.let { initRecyclerView(it) }
 
-        return view
+        return binding?.root
     }
 
-    @FlowPreview
-    @ExperimentalCoroutinesApi
-    @ExperimentalPagingApi
+    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,7 +50,7 @@ class MoviePagingRemoteFragment : Fragment() {
     }
 
     private fun initRecyclerView(view: View) {
-        view.movieRecyclerRemote.apply {
+        binding?.movieRecyclerRemote?.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = movieAdapter.withLoadStateFooter(footer = MovieLoadStateAdapter(movieAdapter::retry))
             addItemDecoration(DividerItemDecoration(view.context, DividerItemDecoration.VERTICAL))
@@ -91,6 +89,6 @@ class MoviePagingRemoteFragment : Fragment() {
     }
 
     private fun showProgressBar(display: Boolean) {
-        paging_progressBar.visibility = if (display) View.VISIBLE else View.GONE
+        binding?.pagingProgressBar?.visibility = if (display) View.VISIBLE else View.GONE
     }
 }
