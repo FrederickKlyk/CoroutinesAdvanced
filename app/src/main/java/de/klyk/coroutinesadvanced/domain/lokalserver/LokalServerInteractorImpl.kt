@@ -2,13 +2,15 @@ package de.klyk.coroutinesadvanced.domain.lokalserver
 
 import com.github.kittinunf.result.Result
 import de.klyk.coroutinesadvanced.io.network.lokalserver.LokalServerService
+import de.klyk.dummy.di.DummyDao
 import io.ktor.client.call.NoTransformationFoundException
 import io.ktor.client.call.receive
 import io.ktor.utils.io.errors.IOException
 import java.net.SocketTimeoutException
 
 class LokalServerInteractorImpl(
-    private val lokalServerService: LokalServerService
+    private val lokalServerService: LokalServerService,
+    private val dummyDao: DummyDao // Hier kann ich jetzt mein dummyDao verwenden
 ) : LokalServerInteractor {
 
     override suspend fun sendTestPost(value: String): Result<LokalServerResponse, LokalServerException> {

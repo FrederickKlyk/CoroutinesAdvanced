@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import de.klyk.dummy.di.DummyDao
 
 @Database(entities = [Movie::class, Movie.MovieRemoteKeys::class], version = 8, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
     abstract fun movieRemoteKeysDao(): MovieRemoteKeysDao
+    abstract fun dummyDao(): DummyDao
 
     companion object {
         private const val DATABASE_NAME = "movies.db"
